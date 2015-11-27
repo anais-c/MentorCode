@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Projecte</title>
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/navigation' %> 
+  <%= render 'layouts/messages' %>
 
-<%= yield %>
-
+	<div class="container">
+    <% flash.each do |name, msg| %>
+	    <%= content_tag(:div, msg, class: "alert alert-info") %>
+	  <% end %>  
+	  <%= yield %>
+	</div>
+  <%= render 'layouts/footer' %>
 </body>
 </html>

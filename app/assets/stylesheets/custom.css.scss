@@ -1,2 +1,91 @@
+$navbar-default-bg: #08088A;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-default {
+	border-radius: 0px;
+}
+
+.navbar .nav > li > a {
+	color: white;
+}
+
+.navbar .nav > li > a:hover {
+	color: #9EBEDA;
+}
+
+#logo {
+	float: left;
+	font-size: 1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+#logo:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.center {
+	text-align: center;
+}
+
+.jumbotron {
+	background-image: asset-url('jumbotron.jpg');
+	backgrond-size: cover;
+	height: 550px;
+}
+
+.jumbotron h1 {
+	color: #fff;
+	text-align: center;
+	margin-bottom: 30px;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+
+.btn-xlarge {
+	font-size: 1.7em;
+	background-color: black;
+	color: white;
+}
+
+.btn-xlarge:hover {
+	color: #337ab7;
+}
+
+footer {
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #08088A;
+	color: #777;
+}
+
+footer a:hover {
+	color: #222;
+}
+
+footer small {
+	float: left;
+}
+
+footer ul {
+	float: right;
+	liset-style: none;
+}
+
+footer ul li {
+	float: left;
+	margin-left: 15px;
+}
+
+#mentors-list {
+	text-align: center;
+}
+
+.show_name {
+	color: #337ab7;
+}
