@@ -1,1 +1,11 @@
-<h1>Show action page of a user</h1>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.firstname %>, <%= @user.lastname %>, <%= @user.email %>
+      </h1>
+    </section>
+  </aside>
+</div>
