@@ -23,15 +23,10 @@
     </div>
     <div class="panel-body">
       <!-- Table -->
-      <%= @expert.available_times.each do |available_time| %>
+
       <table class="table table-striped">
-        <tr>
-          <td><p>Date:</p><%= available_time.date %></td>
-          <td><p>Start:</p><%= available_time.start_time %> h</td>
-          <td><p>End:</p><%= available_time.end_time %> h</td>
-          <td><p><%= link_to "Reserve", class: "btn btn-primary"%></p></td>
-        </tr>        
+          
       </table>
-      <% end %>
+     
     </div>
 </div>

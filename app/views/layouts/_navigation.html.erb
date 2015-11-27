@@ -42,11 +42,14 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+          <li><%= link_to "Edit User Profile", edit_user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+        <% elsif logged_in_expert? %>
+           <li><%= link_to "Edit Expert Profile", edit_expert_path(current_expert) %></li>
+           <li><%= link_to "Logout", experts_logout_path, method: "delete" %></li>
         <% else %>
-           <li><%= link_to "Login", login_path %></li>
-           <li><%= link_to "Signup", signup_path %></li>
+           <li><%= link_to "User Login", login_path %></li>
+           <li><%= link_to "Create an account", signup_path %></li>
         <% end %>
 
         <li class="dropdown">
