@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-4 pull-right center">
+      <section class="picture center">
+        <%= image_tag("007.jpg", :size => '260x220') %>
+      </section>  
+    </div>
+    <div class="col-md-8">
+      <div class="show_name">
+        <h3><%= @expert.firstname %><%= @expert.lastname %></h3>  
+      </div> 
+      </br>
+      <div class="show_info">
+        <h4><strong>Location:</strong> <%= @expert.location %></h4>      
+        <h4><strong>Experience:</strong></h4>  
+        <p><%= @expert.experience %></p>
+      </div> 
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Disponibility</h3>
+    </div>
+    <div class="panel-body">
+      <!-- Table -->
+      <%= @expert.available_times.each do |available_time| %>
+      <table class="table table-striped">
+        <tr>
+          <td><p>Date:</p><%= available_time.date %></td>
+          <td><p>Start:</p><%= available_time.start_time %> h</td>
+          <td><p>End:</p><%= available_time.end_time %> h</td>
+          <td><p><%= link_to "Reserve", class: "btn btn-primary"%></p></td>
+        </tr>        
+      </table>
+      <% end %>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li class="active"><a href="#">Experts</a></li>
+</ol>
+<div class="page-header">
+  <h1>Mentors</h1>
+</div>  
+
+<% @experts.each do |expert| %>
+
+  <div class="row">
+
+    <div class="col-md-2">
+      <section class="picture center">
+        <img src="007.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+      </section>  
+    </div> 
+
+    <div class="col-lg-6 well">
+      <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
+      <p>Location: <%= expert.location %></p>
+      <h5>Experience:</h5>
+      <p><%= expert.experience %></p>
+      <%= link_to "See more", expert_path(expert), class: "btn btn-primary" %>
+      <%= link_to "See disponibility", expert_path(expert), class: "btn btn-primary" %>
+    </div> 
+
+  </div>  
+<% end %>   
