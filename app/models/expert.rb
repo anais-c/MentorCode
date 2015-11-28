@@ -1,4 +1,5 @@
 class Expert < ActiveRecord::Base
+  has_many :available_times, dependent: :destroy  
 
   before_save {self.email = email.downcase}
 

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127185231) do
+ActiveRecord::Schema.define(version: 20151128105036) do
+
+  create_table "available_times", force: :cascade do |t|
+    t.integer  "expert_id"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "experts", force: :cascade do |t|
     t.string   "firstname"
