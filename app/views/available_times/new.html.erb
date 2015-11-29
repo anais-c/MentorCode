@@ -1,0 +1,13 @@
+  <%= form_for(@available_time) do |f| %>
+
+      <%= f.label :date %>
+      <%= f.date_select :date, class: 'form-control' %>  
+
+      <%= f.label :Start %>
+      <%= f.time_field :start_time, class: 'form-control' %> 
+     
+      <%= f.label :End %>
+      <%= f.time_field :end_time, class: 'form-control' %> 
+
+      <%= f.submit "Create", class: "btn btn-primary" %>
+  <% end %>

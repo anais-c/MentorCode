@@ -22,6 +22,10 @@ class ExpertsController < ApplicationController
     @expert = Expert.find(params[:id])
   end
 
+  def dashboard
+    @expert = Expert.find(params[:id])
+  end
+
   private
 
     def expert_params

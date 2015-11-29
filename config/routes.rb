@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get 'experts_login' => 'expert_sessions#new'
   post 'experts_login' => 'expert_sessions#create'
   delete 'experts_logout' => 'expert_sessions#destroy'
+
+  get 'dashboard/:id' => 'experts#dashboard', as: 'dashboard'
+
   resources :users
   resources :experts
+  resources :available_times
   
 end
