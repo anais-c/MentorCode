@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   get 'dashboard/:id' => 'experts#dashboard', as: 'dashboard'
 
-  resources :users
+  resources :users do
+    resources :transactions
+  end
+  
+
   resources :experts
   resources :available_times
   

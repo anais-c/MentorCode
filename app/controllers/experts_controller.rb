@@ -20,6 +20,8 @@ class ExpertsController < ApplicationController
 
   def show
     @expert = Expert.find(params[:id])
+    @user = current_user
+    @transaction = Transaction.new
   end
 
   def dashboard

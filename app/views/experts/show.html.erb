@@ -35,7 +35,15 @@
         <td><p>Date:</p><%= available_time.date %></td>
         <td><p>Start:</p><%= available_time.start_time %> h</td>
         <td><p>End:</p><%= available_time.end_time %> h</td>
-        <td><p><%= link_to "Reserve", class: "btn btn-primary"%></p></td>
+        <td>
+          <!-- las variables de la form tienen que definirse en en la show action
+          del experts controller -->
+          <%= form_for [@user, @transaction] do |f| %>
+            <%= hidden_field_tag "available_time_id", available_time.id %>
+            <%= f.submit "Reserve", class: "btn btn-primary" %>
+          <% end %>
+        </td>
+
       </tr>          
     </table>
     <% end %>
