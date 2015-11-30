@@ -25,7 +25,14 @@ class ExpertsController < ApplicationController
   end
 
   def dashboard
+    #binding.pry
+
     @expert = Expert.find(params[:id])
+    @transactions = @expert.transactions
+    @available_times = @expert.available_times
+
+    #@transactions = @available_time.transactions
+    
   end
 
   private

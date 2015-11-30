@@ -30,12 +30,13 @@
 
   <div class="panel-body">
     <!-- Table -->
-    <%= @expert.available_times.each do |available_time| %>
+    <% @available_times.each do |available_time| %>
     <table class="table table-striped">
       <tr>
-        <td><p>Date:</p><%= available_time.date %></td>
-        <td><p>Start:</p><%= available_time.start_time %> h</td>
-        <td><p>End:</p><%= available_time.end_time %> h</td>
+        <% available_time.transactions.each do |transaction| %>
+          <td><p><%= transaction.user_id %></p></td>
+          <td><p><%= transaction.available_time_id %></p></td>
+        <% end %>  
       </tr>          
     </table>
     <% end %>
@@ -47,18 +48,19 @@
 <div class="panel panel-default">
 
   <div class="panel-heading">
-    <h3 class="panel-title">Transactios to confirm:</h3>
+    <h3 class="panel-title">Transactions to confirm:</h3>
   </div>
 
   <div class="panel-body">
     <!-- Table -->
-    <%= @user.transactions.each do |transaction| %>
+    <% @transactions.each do |transaction| %>
     <table class="table table-striped">
       <tr>
-        <td><p>Student name:</p><%= @user.firstname %> <%= @user.lastname %></td>
-        <td><p>Start:</p><%= available_time.start_time %> h</td>
-        <td><p>End:</p><%= available_time.end_time %> h</td>
-        <td><%= link_to "Confirm", %></td>
+        <td><p>Student name:</p><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+        <td><p>Starting time:</p><%= transaction.available_time.start_time %></td>
+        <td><p>Ending time:</p><%= transaction.available_time.end_time %></td>
+
+        <td><%= link_to "Confirm", user_transaction_path(transaction.user.id, transaction.id) %></td>
       </tr>          
     </table>
     <% end %>
