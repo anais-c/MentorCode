@@ -1,11 +1,43 @@
 
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.firstname %>, <%= @user.lastname %>, <%= @user.email %>
-      </h1>
+    <section class="user-info">
+      <%= gravatar_for @user %>
+      <h1><%= @user.firstname %> <%= @user.lastname %> </h1>
+      <p>Email: <%= @user.email %></p>
     </section>
   </aside>
 </div>
+
+<div class="panel panel-default">
+
+  <div class="panel-heading center">
+    <table class="table table-striped">
+    <h3 class="panel-title">Upcomming Classes</h3>
+    <tr>
+		  <th class= "center">Student name</th>
+		  <th class= "center">Expert</th>
+	    <th class= "center">Class begins at:</th>
+	    <th class= "center">Class ends at:</th>
+    </tr>
+  </div>
+
+  <div class="panel-body">
+
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.user.firstname %>
+            <%= transaction.user.lastname %>
+        </td>
+        <td><%= transaction.available_time.expert.firstname %>
+            <%= transaction.available_time.expert.lastname %>
+        </td>
+        <td><%= transaction.available_time.start_time %> h</td>
+        <td><%= transaction.available_time.end_time %> h</td>      
+      </tr>          
+    <% end %>
+
+    </table>
+  </div><!-- end panel-body -->
+
+</div><!-- panel-default -->

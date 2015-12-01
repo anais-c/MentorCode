@@ -89,6 +89,15 @@ footer ul li {
 
 .show_name {
 	color: #337ab7;
+  margin-bottom: 30px;
+}
+
+.show-info {
+  margin-bottom: 30px;
+}
+
+.add-time {
+  margin-bottom: 20px;
 }
 
 /* mixins, variables, etc. */
@@ -117,8 +126,9 @@ footer ul li {
 /* sidebar */
 
 aside {
-  section.user_info {
+  section.user-info {
     margin-top: 20px;
+    margin-bottom: 40px;
   }
   section {
     padding: 10px 0;

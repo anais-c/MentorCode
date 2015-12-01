@@ -12,7 +12,7 @@
       <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
     </div> 
 
-    <div class="show_info">
+    <div class="show-info">
       <h4><strong>Location:</strong> <%= @expert.location %></h4>      
       <h4><strong>Experience:</strong></h4>  
       <p><%= @expert.experience %></p>
@@ -29,7 +29,7 @@
 
   <div class="panel-body">
     <!-- Table -->
-    <%= @expert.available_times.each do |available_time| %>
+    <% @expert.available_times.each do |available_time| %>
     <table class="table table-striped">
       <tr>
         <td><p>Date:</p><%= available_time.date %></td>

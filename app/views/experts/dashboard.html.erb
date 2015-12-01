@@ -1,5 +1,7 @@
 <div class="row">
-  <h2>Expert Dashboard</h2>
+
+  
+
   <div class="col-md-4 pull-right center">
     <section class="picture center">
       <!--assets/images -->
@@ -8,22 +10,27 @@
   </div><!-- end col-md-4 -->
 
   <div class="col-md-8">
+    <h2>Dashboard</h2>
     <div class="show_name">
       <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
     </div> 
 
-    <div class="show_info">
+    <div class="show-info">
       <h4><strong>Location:</strong> <%= @expert.location %></h4>      
       <h4><strong>Experience:</strong></h4>  
       <p><%= @expert.experience %></p>
-    </div>      
+    </div> 
+
   </div><!-- end col-md-8 --> 
 
 </div><!-- end row -->
 
+<div class="add-time">
+  <%= link_to "Add available time", new_available_time_path, class:"btn btn-primary" %>
+</div>
+
 <div class="panel panel-default">
 
-  <%= link_to "Add a new available_time", new_available_time_path %>
   <div class="panel-heading">
     <h3 class="panel-title">My Available Times</h3>
   </div>
@@ -31,15 +38,14 @@
   <div class="panel-body">
     <!-- Table -->
     <% @available_times.each do |available_time| %>
-    <table class="table table-striped">
-      <tr>
-        <% available_time.transactions.each do |transaction| %>
-          <td><p><%= transaction.user_id %></p></td>
-          <td><p><%= transaction.available_time_id %></p></td>
-        <% end %>  
-      </tr>          
-    </table>
-    <% end %>
+      <table class="table table-striped">
+        <tr>
+          <td><p>Date:</p><%= available_time.date %></td>
+          <td><p>Start:</p><%= available_time.start_time %> h</td>
+          <td><p>End:</p><%= available_time.end_time %> h</td>
+        </tr> 
+      </table>   
+    <% end %>  
   </div><!-- end panel-body -->
 
 </div><!-- panel-default -->
@@ -54,15 +60,34 @@
   <div class="panel-body">
     <!-- Table -->
     <% @transactions.each do |transaction| %>
-    <table class="table table-striped">
-      <tr>
-        <td><p>Student name:</p><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-        <td><p>Starting time:</p><%= transaction.available_time.start_time %></td>
-        <td><p>Ending time:</p><%= transaction.available_time.end_time %></td>
+      <table class="table table-striped">
+        <tr>
+          <td><p>Student name:</p><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+          <td><p>Starting time:</p><%= transaction.available_time.start_time %></td>
+          <td><p>Ending time:</p><%= transaction.available_time.end_time %></td>
+          <td>
+              <%= submit_tag "Confirm" %>
+          </td>        
+        </tr>          
+      </table>
+    <% end %>
+  </div><!-- end panel-body -->
 
-        <td><%= link_to "Confirm", user_transaction_path(transaction.user.id, transaction.id) %></td>
-      </tr>          
-    </table>
+</div><!-- panel-default -->
+
+<div class="panel panel-default">
+
+  <div class="panel-body">
+    <% @available_times.each do |available_time| %>
+      <table class="table table-striped">
+        <tr>
+          <% available_time.transactions.each do |transaction| %>
+            <td><p>Date:</p><%= available_time.date %></td>
+            <td><p>Start:</p><%= available_time.start_time %> h</td>
+            <td><p>End:</p><%= available_time.end_time %> h</td>
+          <% end %>  
+        </tr>                
+      </table>
     <% end %>
   </div><!-- end panel-body -->
 
