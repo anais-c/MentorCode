@@ -1,7 +1,24 @@
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 id="myModalLabel">Modal header</h4>
+        </div><!-- modal-header -->
+
+        <div class="modal-body">
+          <p>render something</p>
+        </div><!-- modal-body -->
+
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button class="btn btn-primary">Save changes</button>
+        </div> 
+      </div><!-- modal-content -->  
+    </div><!-- end modal-dialog -->
+  </div><!-- end modal-window -->
+
 <div class="row">
-
-  
-
   <div class="col-md-4 pull-right center">
     <section class="picture center">
       <!--assets/images -->
@@ -26,69 +43,62 @@
 </div><!-- end row -->
 
 <div class="add-time">
+  <%= link_to "Add time", new_available_time_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => "#modal-window"} %>
+
   <%= link_to "Add available time", new_available_time_path, class:"btn btn-primary" %>
 </div>
 
-<div class="panel panel-default">
+<% if @expert.available_times.any?%>
+  <div class="panel panel-default">
 
-  <div class="panel-heading">
-    <h3 class="panel-title">My Available Times</h3>
-  </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">My Available Times</h3>
+    </div>
 
-  <div class="panel-body">
-    <!-- Table -->
-    <% @available_times.each do |available_time| %>
-      <table class="table table-striped">
-        <tr>
-          <td><p>Date:</p><%= available_time.date %></td>
-          <td><p>Start:</p><%= available_time.start_time %> h</td>
-          <td><p>End:</p><%= available_time.end_time %> h</td>
-        </tr> 
-      </table>   
-    <% end %>  
-  </div><!-- end panel-body -->
-
-</div><!-- panel-default -->
-
-
-<div class="panel panel-default">
-
-  <div class="panel-heading">
-    <h3 class="panel-title">Transactions to confirm:</h3>
-  </div>
-
-  <div class="panel-body">
-    <!-- Table -->
-    <% @transactions.each do |transaction| %>
-      <table class="table table-striped">
-        <tr>
-          <td><p>Student name:</p><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-          <td><p>Starting time:</p><%= transaction.available_time.start_time %></td>
-          <td><p>Ending time:</p><%= transaction.available_time.end_time %></td>
-          <td>
-              <%= submit_tag "Confirm" %>
-          </td>        
-        </tr>          
-      </table>
-    <% end %>
-  </div><!-- end panel-body -->
-
-</div><!-- panel-default -->
-
-<div class="panel panel-default">
-
-  <div class="panel-body">
-    <% @available_times.each do |available_time| %>
-      <table class="table table-striped">
-        <tr>
-          <% available_time.transactions.each do |transaction| %>
+    <div class="panel-body">
+      <!-- Table -->
+      <% @available_times.each do |available_time| %>
+        <table class="table table-striped">
+          <tr>
             <td><p>Date:</p><%= available_time.date %></td>
             <td><p>Start:</p><%= available_time.start_time %> h</td>
             <td><p>End:</p><%= available_time.end_time %> h</td>
-          <% end %>  
-        </tr>                
-      </table>
-    <% end %>
-  </div><!-- end panel-body -->
+            <td><p>id:</p><%= available_time.id %></td>
+          </tr> 
+        </table>   
+      <% end %>  
+    </div><!-- end panel-body -->
 
-</div><!-- panel-default -->
+  </div><!-- panel-default -->
+<% end %>
+
+<% if @transactions.any?%>
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Transactions to confirm:</h3>
+    </div>
+
+    <div class="panel-body">
+ 
+      <% @transactions.each do |transaction| %>
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td>Student name:<%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+            <td>Starting time:<%= transaction.available_time.start_time %></td>
+            <td>Ending time:<%= transaction.available_time.end_time %></td>
+            <td>id:<%= transaction.available_time.id %></td>
+            <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+              <%= submit_tag "Confirm" %>        
+            <% end %></td>
+          </tr>
+        </tbody>
+      </table>        
+        <% end %>
+
+    </div>
+    <!-- end panel-body -->
+  </div><!-- panel-default -->
+<% end %>
+

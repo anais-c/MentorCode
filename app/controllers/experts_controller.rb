@@ -16,7 +16,7 @@ class ExpertsController < ApplicationController
     if @expert.save
       log_in_expert @expert
       flash[:success] = "Welcome to our app"
-      redirect_to expert_path(@expert)
+      redirect_to dashboard_path(@expert)
     else
       render 'new'
     end
@@ -53,7 +53,7 @@ class ExpertsController < ApplicationController
   private
 
     def expert_params
-      params.require(:expert).permit(:firstname, :lastname, :email, :experience, :location, :password,
+      params.require(:expert).permit(:firstname, :lastname, :email, :experience, :location, :picture, :password,
                                    :password_confirmation)
     end
 

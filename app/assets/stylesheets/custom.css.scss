@@ -4,6 +4,10 @@ $gray-medium-light: #eaeaea;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  background-color: #f1f1f1;
+}
+
 .navbar-default {
 	border-radius: 0px;
 }
@@ -20,7 +24,7 @@ $gray-medium-light: #eaeaea;
 	float: left;
 	font-size: 1.7em;
 	color: #fff;
-	text-transform: uppercase;
+
 	letter-spacing: 1px;
 	font-weight: bold;
 }
@@ -217,4 +221,14 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+/* User show */
+
+.panel-heading .panel-title {
+  padding-top: 20px;
+}
+
+.expert-link {
+  padding-top: 20px;
 }

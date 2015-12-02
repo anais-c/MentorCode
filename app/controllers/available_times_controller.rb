@@ -2,6 +2,10 @@ class AvailableTimesController < ApplicationController
 
   def new
     @available_time = AvailableTime.new
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end  
 
   def create
@@ -9,7 +13,7 @@ class AvailableTimesController < ApplicationController
     @available_time.expert = current_expert
 
     if @available_time.save
-      flash[:success] = "Added available time"
+      flash[:success] = "You added an available time successfully!"
       redirect_to dashboard_path(current_expert)
     else
       render 'dashboard'

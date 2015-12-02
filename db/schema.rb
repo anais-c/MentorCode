@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129111920) do
+ActiveRecord::Schema.define(version: 20151201183550) do
 
   create_table "available_times", force: :cascade do |t|
     t.integer  "expert_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151129111920) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "picture"
   end
 
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true

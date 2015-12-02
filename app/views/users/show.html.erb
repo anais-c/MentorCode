@@ -4,40 +4,45 @@
     <section class="user-info">
       <%= gravatar_for @user %>
       <h1><%= @user.firstname %> <%= @user.lastname %> </h1>
-      <p>Email: <%= @user.email %></p>
+      <p>Your contact email: <%= @user.email %></p>
     </section>
   </aside>
 </div>
 
-<div class="panel panel-default">
+<% if @user.transactions.any? %>
 
-  <div class="panel-heading center">
-    <table class="table table-striped">
-    <h3 class="panel-title">Upcomming Classes</h3>
-    <tr>
-		  <th class= "center">Student name</th>
-		  <th class= "center">Expert</th>
-	    <th class= "center">Class begins at:</th>
-	    <th class= "center">Class ends at:</th>
-    </tr>
-  </div>
+  <p class="center lead"><%= link_to "See all experts", experts_path %></p>
 
-  <div class="panel-body">
+  <div class="panel panel-default">
 
-    <% @transactions.each do |transaction| %>
+    <div class="panel-heading center">
+      <table class="table table-striped">
+      <h3 class="panel-title">Your Upcomming Classes</h3>
       <tr>
-        <td><%= transaction.user.firstname %>
-            <%= transaction.user.lastname %>
-        </td>
-        <td><%= transaction.available_time.expert.firstname %>
-            <%= transaction.available_time.expert.lastname %>
-        </td>
-        <td><%= transaction.available_time.start_time %> h</td>
-        <td><%= transaction.available_time.end_time %> h</td>      
-      </tr>          
-    <% end %>
+  		  <th class= "center">Your mentor is:</th>
+  	    <th class= "center">Class begins at:</th>
+  	    <th class= "center">Class ends at:</th>
+      </tr>
+    </div>
 
-    </table>
-  </div><!-- end panel-body -->
+    <div class="panel-body">
 
-</div><!-- panel-default -->
+      <% @transactions.each do |transaction| %>
+        <tr>
+
+          <td><%= transaction.available_time.expert.firstname %>
+              <%= transaction.available_time.expert.lastname %>
+          </td>
+          <td><%= transaction.available_time.start_time %> h</td>
+          <td><%= transaction.available_time.end_time %> h</td>      
+        </tr>          
+      <% end %>
+
+      </table>
+    </div><!-- end panel-body -->
+
+  </div><!-- panel-default -->
+
+<% else %>
+  <p class="center lead"><%= link_to "Choose an expert and make a reservation now", experts_path %></p>  
+<% end %>

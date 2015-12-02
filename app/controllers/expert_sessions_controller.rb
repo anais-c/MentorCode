@@ -7,9 +7,8 @@ class ExpertSessionsController < ApplicationController
     expert = Expert.find_by(email: params[:session][:email].downcase)
     if expert && expert.authenticate(params[:session][:password])
       log_in_expert expert
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_back_or expert
-      redirect_to expert_path(expert)
+      #params[:session][:remember_me] == '1' ? remember(expert) : forget(expert)
+      redirect_to dashboard_path(expert)
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
