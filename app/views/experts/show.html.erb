@@ -28,17 +28,27 @@
       <h3 class="panel-title">Disponibility</h3>
     </div>
 
+    <div class="panel-heading center">
+      <table class="table table-striped">
+      <tr>
+        <th class= "center">Date:</th>
+        <th class= "center">Class begins at:</th>
+        <th class= "center">Class ends at:</th>
+        <th class= "center">id:</th>
+        <th class= "center">Reserve</th>
+      </tr>
+    </div>
     <div class="panel-body">
       <!-- Table -->
-      <% @expert.available_times.each do |available_time| %>
+      <% @expert_unreserved_available_times.each do |available_time| %>
       <table class="table table-striped">
         <tr>
-          <td><p>Date:</p><%= available_time.date %></td>
-          <td><p>Start:</p><%= available_time.start_time %> h</td>
-          <td><p>End:</p><%= available_time.end_time %> h</td>
-          <td><p>id:</p><%= available_time.id %> h</td>
+          <td><%= available_time.date %></td>
+          <td><%= available_time.start_time %> h</td>
+          <td><%= available_time.end_time %> h</td>
+          <td><%= available_time.id %> h</td>
           <td>
-            <!-- las variables de la form tienen que definirse en en la show action
+            <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
             del experts controller -->
 
             <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
@@ -56,7 +66,3 @@
 <% else %>
   <p>Sorry, this expert doesn't have any available time at this moment. </p>
 <% end %>
-
-<script>
-  $('.btn-primary').on('click', )
-</script>

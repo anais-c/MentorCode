@@ -3,7 +3,7 @@
   <%= form_for(@available_time) do |f| %>
 
       <%= f.label :date %>
-      <%= f.date_select :date, class: 'form-control' %>  
+      <%= f.date_field :date, class: 'form-control' %>  
 
       <%= f.label :Start %>
       <%= f.time_field :start_time, class: 'form-control' %> 

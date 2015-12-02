@@ -12,12 +12,13 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Meet our experts", experts_path %></li>
+        
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
+          <li><%= link_to "Meet our experts", experts_path %></li>
           <li><%= link_to "Edit User Profile", edit_user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path, method: "delete" %></li>
         <% elsif logged_in_expert? %>
@@ -26,7 +27,7 @@
         <% else %>
           <li><%= link_to "Expert Login", experts_login_path %></li>
           <li><%= link_to "User Login", login_path %></li>
-          <li><%= link_to "Create an account", signup_path %></li>
+          <li><%= link_to "Create a User account", signup_path %></li>
         <% end %>
       </ul>
 

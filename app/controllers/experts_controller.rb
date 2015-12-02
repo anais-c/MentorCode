@@ -1,6 +1,6 @@
 class ExpertsController < ApplicationController
 
-  before_action :logged_in_expert, only: [:edit, :update, :dashboard]
+  before_action :logged_in_expert, only: [:edit, :update]
   before_action :correct_expert,   only: [:edit, :update]
 
   def index
@@ -23,9 +23,13 @@ class ExpertsController < ApplicationController
   end
 
   def show
+    
     @expert = Expert.find(params[:id])
+    @expert_unreserved_available_times = @expert.available_times.where(reserved: false)
     @user = current_user
     @transaction = Transaction.new
+
+
   end
 
   def dashboard
@@ -45,8 +49,9 @@ class ExpertsController < ApplicationController
   end
 
   def update
+    #binding.pry
     @user = User.find_by[:user_id]
-    @transaction = Transaction.find_by(id: params[:id])
+    @transaction = Transaction.find_by(id)
     if @transaction.update_attributes(:status, "ok")
       redirect_to dashboard_path(current_expert)
     end

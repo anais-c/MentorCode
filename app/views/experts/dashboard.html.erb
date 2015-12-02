@@ -100,24 +100,28 @@
         <th class= "center">id:</th>
       </tr>
     </div>
+    
 
-    <div class="panel-body">
-      <% @pending_transactions.each do |transaction| %>
-        <table class="table table-striped">
-          <tbody>
+  <div class="panel-body">
+    <% @pending_transactions.each do |transaction| %>
+      <table class="table table-striped">
+        <tbody>
           <tr>
-            <td>Student name:<%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-            <td>Starting time:<%= transaction.available_time.start_time %></td>
-            <td>Ending time:<%= transaction.available_time.end_time %></td>
-            <td>id:<%= transaction.available_time.id %></td>
+            <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+            <td><%= transaction.available_time.start_time %></td>
+            <td><%= transaction.available_time.end_time %></td>
+            <td><%= transaction.available_time.id %></td>
+
             <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
-              <%= submit_tag "Confirm" %>        
-            <% end %></td>
+                  <%= submit_tag "Confirm" %>        
+                <% end %>
+            </td>
           </tr>
         </tbody>
       </table>        
     <% end %>
-  <%end%>
+<%end%>
+ 
 
 
     <div class="panel-heading">
@@ -150,8 +154,7 @@
         <% end %>
         <% end %>
 
-    </div>
-    <!-- end panel-body -->
+    </div><!-- end panel-body -->
   </div><!-- panel-default -->
 <% end %>
 
