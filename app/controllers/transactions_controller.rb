@@ -19,9 +19,9 @@ class TransactionsController < ApplicationController
 
   def update
 
-    transaction = Transaction.find(params[:id])
+    @transaction = Transaction.find(params[:id])
 
-    if transaction.update_column(:status, "ok")
+    if @transaction.update_column(:status, "ok")
       flash[:success] = "Reserve confirmed"
       redirect_to dashboard_path(current_expert)
     else  

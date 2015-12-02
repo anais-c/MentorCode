@@ -52,7 +52,17 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      <h3 class="panel-title">My Available Times</h3>
+      <h3 class="panel-title center">My Available Times</h3>
+    </div>
+
+    <div class="panel-heading center">
+      <table class="table table-striped">
+      <tr>
+        <th class= "center">Date:</th>
+        <th class= "center">Class begins at:</th>
+        <th class= "center">Class ends at:</th>
+        <th class= "center">id:</th>
+      </tr>
     </div>
 
     <div class="panel-body">
@@ -75,13 +85,24 @@
 <% if @transactions.any?%>
   <div class="panel panel-default">
 
-    <div class="panel-heading">
+
+  <% if !@pending_transactions.empty? %>
+      <div class="panel-heading">
       <h3 class="panel-title">Transactions to confirm:</h3>
     </div>
 
+    <div class="panel-heading center">
+      <table class="table table-striped">
+      <tr>
+        <th class= "center">Date:</th>
+        <th class= "center">Class begins at:</th>
+        <th class= "center">Class ends at:</th>
+        <th class= "center">id:</th>
+      </tr>
+    </div>
+
     <div class="panel-body">
- 
-      <% @transactions.each do |transaction| %>
+      <% @pending_transactions.each do |transaction| %>
         <table class="table table-striped">
           <tbody>
           <tr>
@@ -95,6 +116,38 @@
           </tr>
         </tbody>
       </table>        
+    <% end %>
+  <%end%>
+
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Transactions confirmed:</h3>
+    </div>
+    <div class="panel-heading center">
+
+      <table class="table table-striped">
+      <tr>
+        <th class= "center">Date:</th>
+        <th class= "center">Class begins at:</th>
+        <th class= "center">Class ends at:</th>
+        <th class= "center">id:</th>
+      </tr>
+    </div>
+
+    <div class="panel-body">
+      <% if !@confirmed_transactions.empty? %>
+      <% @confirmed_transactions.each do |transaction| %>
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+            <td><%= transaction.available_time.start_time %></td>
+            <td><%= transaction.available_time.end_time %></td>
+            <td><%= transaction.available_time.id %></td>
+          </tr>
+        </tbody>
+      </table>        
+        <% end %>
         <% end %>
 
     </div>

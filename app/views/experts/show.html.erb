@@ -40,6 +40,7 @@
           <td>
             <!-- las variables de la form tienen que definirse en en la show action
             del experts controller -->
+
             <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
               <%= hidden_field_tag "available_time_id", available_time.id %>
               <%= f.submit "Reserve", class: "btn btn-primary" %>

@@ -35,7 +35,10 @@ class ExpertsController < ApplicationController
 
     @expert = current_expert
     @transactions = @expert.transactions
+    @confirmed_transactions = @transactions.where(status: "ok")
+    @pending_transactions = @transactions.where(status: "pending")
     @available_times = @expert.available_times
+    #binding.pry
 
     #@transactions = @available_time.transactions
     
@@ -46,7 +49,6 @@ class ExpertsController < ApplicationController
     @transaction = Transaction.find_by(id: params[:id])
     if @transaction.update_attributes(:status, "ok")
       redirect_to dashboard_path(current_expert)
-    else
     end
   end 
 
