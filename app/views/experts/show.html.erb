@@ -1,68 +1,76 @@
 <div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-  <div class="col-md-4 pull-right center">
-    <section class="picture center">
-      <!--assets/images -->
-      <%= image_tag("007.jpg", :size => '260x220') %>
-    </section>  
-  </div><!-- end col-md-4 -->
+    <div class="col-md-4 pull-right center">
+      <section class="picture center">
+        <!--assets/images -->
+        <%= image_tag("007.jpg", :size => '260x220') %>
+      </section>  
+    </div><!-- end col-md-4 -->
 
-  <div class="col-md-8">
-    <div class="show_name">
-      <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
-    </div> 
+    <div class="col-md-8">
+      <div class="show_name">
+        <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
+      </div> 
 
-    <div class="show-info">
-      <h4><strong>Location:</strong> <%= @expert.location %></h4>      
-      <h4><strong>Experience:</strong></h4>  
-      <p><%= @expert.experience %></p>
-    </div>      
-  </div><!-- end col-md-8 --> 
+      <div class="show-info">
+        <h4><strong>Location:</strong> <%= @expert.location %></h4>      
+        <h4><strong>Experience:</strong></h4>  
+        <p><%= @expert.experience %></p>
+      </div>      
+    </div><!-- end col-md-8 --> 
 
-</div><!-- end row -->
+  </div><!-- end row -->
 
-<% if @expert.available_times.any? %>
-  <div class="panel panel-default">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <% if @expert.available_times.any? %>
+        <div class="panel panel-default">
 
-    <div class="panel-heading">
-      <h3 class="panel-title">Disponibility</h3>
-    </div>
+          <div class="panel-heading">
+            <h3 class="panel-title">Availability</h3>
+          </div>
 
-    <div class="panel-heading center">
-      <table class="table table-striped">
-      <tr>
-        <th class= "center">Date:</th>
-        <th class= "center">Class begins at:</th>
-        <th class= "center">Class ends at:</th>
-        <th class= "center">id:</th>
-        <th class= "center">Reserve</th>
-      </tr>
-    </div>
-    <div class="panel-body">
-      <!-- Table -->
-      <% @expert_unreserved_available_times.each do |available_time| %>
-      <table class="table table-striped">
-        <tr>
-          <td><%= available_time.date %></td>
-          <td><%= available_time.start_time %> h</td>
-          <td><%= available_time.end_time %> h</td>
-          <td><%= available_time.id %> h</td>
-          <td>
-            <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
-            del experts controller -->
+          <div class="panel-heading center">
+            <table class="table table-striped">
+            <tr>
+              <th class= "center">Date:</th>
+              <th class= "center">Class begins at:</th>
+              <th class= "center">Class ends at:</th>
+              <th class= "center">id:</th>
+              <th class= "center">Reserve</th>
+            </tr>
+          </div>
+          <div class="panel-body">
+            <!-- Table -->
+            <% @expert_unreserved_available_times.each do |available_time| %>
+            <table class="table table-striped">
+              <tr>
+                <td><%= available_time.date %></td>
+                <td><%= available_time.start_time %> h</td>
+                <td><%= available_time.end_time %> h</td>
+                <td><%= available_time.id %> h</td>
+                <td>
+                  <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
+                  del experts controller -->
 
-            <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
-              <%= hidden_field_tag "available_time_id", available_time.id %>
-              <%= f.submit "Reserve", class: "btn btn-primary" %>
+                  <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
+                    <%= hidden_field_tag "available_time_id", available_time.id %>
+                    <%= f.submit "Reserve", class: "btn btn-primary" %>
+                  <% end %>
+                </td>
+
+              </tr>          
+            </table>
             <% end %>
-          </td>
+          </div><!-- end panel-body -->
 
-        </tr>          
-      </table>
+        </div><!-- panel-default -->
+      <% else %>
+        <p>Sorry, this expert doesn't have any available time at this moment. </p>
       <% end %>
-    </div><!-- end panel-body -->
+    </div>
+  </div>  
 
-  </div><!-- panel-default -->
-<% else %>
-  <p>Sorry, this expert doesn't have any available time at this moment. </p>
-<% end %>
+  </div> 
+</div>

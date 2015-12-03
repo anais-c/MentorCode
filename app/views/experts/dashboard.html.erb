@@ -1,160 +1,144 @@
-  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 id="myModalLabel">Modal header</h4>
-        </div><!-- modal-header -->
-
-        <div class="modal-body">
-          <p>render something</p>
-        </div><!-- modal-body -->
-
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          <button class="btn btn-primary">Save changes</button>
-        </div> 
-      </div><!-- modal-content -->  
-    </div><!-- end modal-dialog -->
-  </div><!-- end modal-window -->
-
 <div class="row">
-  <div class="col-md-4 pull-right center">
-    <section class="picture center">
-      <!--assets/images -->
-      <%= image_tag("007.jpg", :size => '260x220') %>
-    </section>  
-  </div><!-- end col-md-4 -->
+  <div class="col-md-6 col-md-offset-3">
 
-  <div class="col-md-8">
-    <h2>Dashboard</h2>
-    <div class="show_name">
-      <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
-    </div> 
+    <div class="row">
+      <div class="col-md-4 pull-right center">
+        <section class="picture center">
+          <!--assets/images -->
+          <%= image_tag("007.jpg", :size => '260x220') %>
+        </section>  
+      </div><!-- end col-md-4 -->
 
-    <div class="show-info">
-      <h4><strong>Location:</strong> <%= @expert.location %></h4>      
-      <h4><strong>Experience:</strong></h4>  
-      <p><%= @expert.experience %></p>
-    </div> 
+      <div class="col-md-8">
+        <h2>Dashboard</h2>
+        <div class="show_name">
+          <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
+        </div> 
 
-  </div><!-- end col-md-8 --> 
+        <div class="show-info">
+          <h4><strong>Location:</strong> <%= @expert.location %></h4>      
+          <h4><strong>Experience:</strong></h4>  
+          <p><%= @expert.experience %></p>
+        </div> 
 
-</div><!-- end row -->
+      </div><!-- end col-md-8 --> 
 
-<div class="add-time">
-  <%= link_to "Add time", new_available_time_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => "#modal-window"} %>
+    </div><!-- end row -->
 
-  <%= link_to "Add available time", new_available_time_path, class:"btn btn-primary" %>
-</div>
-
-<% if @expert.available_times.any?%>
-  <div class="panel panel-default">
-
-    <div class="panel-heading">
-      <h3 class="panel-title center">My Available Times</h3>
+    <div class="add-time">
+      <%= link_to "Add available time", new_available_time_path, class:"btn btn-primary" %>
     </div>
 
-    <div class="panel-heading center">
-      <table class="table table-striped">
-      <tr>
-        <th class= "center">Date:</th>
-        <th class= "center">Class begins at:</th>
-        <th class= "center">Class ends at:</th>
-        <th class= "center">id:</th>
-      </tr>
-    </div>
+    <% if @expert.available_times.any?%>
+      <div class="panel panel-default">
 
-    <div class="panel-body">
-      <!-- Table -->
-      <% @available_times.each do |available_time| %>
-        <table class="table table-striped">
+        <div class="panel-heading">
+          <h3 class="panel-title center">My Available Times</h3>
+        </div>
+
+        <div class="panel-heading center">
+          <table class="table table-striped">
           <tr>
-            <td><p>Date:</p><%= available_time.date %></td>
-            <td><p>Start:</p><%= available_time.start_time %> h</td>
-            <td><p>End:</p><%= available_time.end_time %> h</td>
-            <td><p>id:</p><%= available_time.id %></td>
-          </tr> 
-        </table>   
-      <% end %>  
-    </div><!-- end panel-body -->
-
-  </div><!-- panel-default -->
-<% end %>
-
-<% if @transactions.any?%>
-  <div class="panel panel-default">
-
-
-  <% if !@pending_transactions.empty? %>
-      <div class="panel-heading">
-      <h3 class="panel-title">Transactions to confirm:</h3>
-    </div>
-
-    <div class="panel-heading center">
-      <table class="table table-striped">
-      <tr>
-        <th class= "center">Date:</th>
-        <th class= "center">Class begins at:</th>
-        <th class= "center">Class ends at:</th>
-        <th class= "center">id:</th>
-      </tr>
-    </div>
-    
-
-  <div class="panel-body">
-    <% @pending_transactions.each do |transaction| %>
-      <table class="table table-striped">
-        <tbody>
-          <tr>
-            <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-            <td><%= transaction.available_time.start_time %></td>
-            <td><%= transaction.available_time.end_time %></td>
-            <td><%= transaction.available_time.id %></td>
-
-            <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
-                  <%= submit_tag "Confirm" %>        
-                <% end %>
-            </td>
+            <th class= "center">Date:</th>
+            <th class= "center">Class begins at:</th>
+            <th class= "center">Class ends at:</th>
+            <th class= "center">id:</th>
           </tr>
-        </tbody>
-      </table>        
+        </div>
+
+        <div class="panel-body">
+          <!-- Table -->
+          <% @available_times.each do |available_time| %>
+            <table class="table table-striped">
+              <tr>
+                <td><p>Date:</p><%= available_time.date %></td>
+                <td><p>Start:</p><%= available_time.start_time %> h</td>
+                <td><p>End:</p><%= available_time.end_time %> h</td>
+                <td><p>id:</p><%= available_time.id %></td>
+              </tr> 
+            </table>   
+          <% end %>  
+        </div><!-- end panel-body -->
+
+      </div><!-- panel-default -->
     <% end %>
-<%end%>
- 
+
+    <% if @transactions.any?%>
+      <div class="panel panel-default">
 
 
-    <div class="panel-heading">
-      <h3 class="panel-title">Transactions confirmed:</h3>
-    </div>
-    <div class="panel-heading center">
+      <% if !@pending_transactions.empty? %>
+          <div class="panel-heading">
+          <h3 class="panel-title">Transactions to confirm:</h3>
+        </div>
 
-      <table class="table table-striped">
-      <tr>
-        <th class= "center">Date:</th>
-        <th class= "center">Class begins at:</th>
-        <th class= "center">Class ends at:</th>
-        <th class= "center">id:</th>
-      </tr>
-    </div>
-
-    <div class="panel-body">
-      <% if !@confirmed_transactions.empty? %>
-      <% @confirmed_transactions.each do |transaction| %>
-        <table class="table table-striped">
-          <tbody>
+        <div class="panel-heading center">
+          <table class="table table-striped">
           <tr>
-            <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-            <td><%= transaction.available_time.start_time %></td>
-            <td><%= transaction.available_time.end_time %></td>
-            <td><%= transaction.available_time.id %></td>
+            <th class= "center">Date:</th>
+            <th class= "center">Class begins at:</th>
+            <th class= "center">Class ends at:</th>
+            <th class= "center">id:</th>
           </tr>
-        </tbody>
-      </table>        
-        <% end %>
-        <% end %>
+        </div>
+        
 
-    </div><!-- end panel-body -->
-  </div><!-- panel-default -->
-<% end %>
+      <div class="panel-body">
+        <% @pending_transactions.each do |transaction| %>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                <td><%= transaction.available_time.start_time %></td>
+                <td><%= transaction.available_time.end_time %></td>
+                <td><%= transaction.available_time.id %></td>
+
+                <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+                      <%= submit_tag "Confirm" %>        
+                    <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>        
+        <% end %>
+    <%end%>
+     
+
+
+        <div class="panel-heading">
+          <h3 class="panel-title">Transactions confirmed:</h3>
+        </div>
+        <div class="panel-heading center">
+
+          <table class="table table-striped">
+          <tr>
+            <th class= "center">Date:</th>
+            <th class= "center">Class begins at:</th>
+            <th class= "center">Class ends at:</th>
+            <th class= "center">id:</th>
+          </tr>
+        </div>
+
+        <div class="panel-body">
+          <% if !@confirmed_transactions.empty? %>
+          <% @confirmed_transactions.each do |transaction| %>
+            <table class="table table-striped">
+              <tbody>
+              <tr>
+                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                <td><%= transaction.available_time.start_time %></td>
+                <td><%= transaction.available_time.end_time %></td>
+                <td><%= transaction.available_time.id %></td>
+              </tr>
+            </tbody>
+          </table>        
+            <% end %>
+            <% end %>
+
+        </div><!-- end panel-body -->
+      </div><!-- panel-default -->
+    <% end %>
+
+  </div> 
+</div>
 

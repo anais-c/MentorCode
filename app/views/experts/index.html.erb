@@ -1,32 +1,34 @@
-<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li class="active"><a href="#">Experts</a></li>
-</ol>
-<div class="page-header">
-  <h1>Mentors</h1>
-</div>  
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-<% @experts.each do |expert| %>
+    <div class="page-header">
+      <h1>Mentors</h1>
+    </div>  
 
-  <div class="row">
+    <% @experts.each do |expert| %>
 
-    <div class="col-md-2">
-      <section class="picture center">
-        <% if expert.picture? %>
-          <%= image_tag expert.picture.url %>
-        <% else %>
-          <img src="007.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
-        <% end %>
-      </section>  
-    </div> 
+      <div class="row">
 
-    <div class="col-lg-6 well">
-      <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
-      <p>Location: <%= expert.location %></p>
-      <h5>Experience:</h5>
-      <p><%= expert.experience %></p>
-      <%= link_to "See disponibility", expert_path(expert), class: "btn btn-primary" %>
-    </div> 
+        <div class="col-md-4">
+          <section class="picture center">
+            <% if expert.picture? %>
+              <%= image_tag expert.picture.url %>
+            <% else %>
+              <img src="007.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+            <% end %>
+          </section>  
+        </div> 
 
-  </div>  
-<% end %>   
+        <div class="col-lg-8 well">
+          <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
+          <p>Location: <%= expert.location %></p>
+          <h5>Experience:</h5>
+          <p><%= expert.experience %></p>
+          <%= link_to "See disponibility", expert_path(expert), class: "btn btn-primary" %>
+        </div> 
+
+      </div>  
+    <% end %>  
+
+  </div> 
+</div>
