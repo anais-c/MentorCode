@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title(yield(:title)) %></title>
+    <title>
+      <% if logged_in? %>
+        Student
+      <% elsif logged_in_expert? %>
+        Expert
+      <% else %>
+        Mentor Code
+      <% end %>
+    </title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
   </head>
-
+  
   <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-    <%= render 'layouts/navigation' %>
+    <div>
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/messages' %>
 
-    <%= render 'layouts/messages' %>
+    	  <%= yield %>
 
-
-      <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-  	  <% end %>  
-  	  <%= yield %>
-  	
-    
-    <%= render 'layouts/footer' %>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    </div>
   </body>
+  <%= render 'layouts/footer' %>
 </html>

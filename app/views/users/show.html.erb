@@ -1,11 +1,15 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <h3 style="text-decoration: underline">Student Profile</h3>
     <div class="row">
       <aside class="col-md-4">
         <section class="user-info">
-          <%= gravatar_for @user %>
-          <h1><%= @user.firstname %> <%= @user.lastname %> </h1>
-          <p>Your contact email: <%= @user.email %></p>
+          <div class="user-gravatar">
+            <%= gravatar_for @user %>
+          </div>
+          <h1>Name: <%= @user.firstname %> <%= @user.lastname %> </h1>
+          </br>
+          <p>Your email: <%= @user.email %></p>
         </section>
       </aside>
     </div>
@@ -18,8 +22,8 @@
 
         <div class="panel-heading center">
           <table class="table table-striped">
-          <h3 class="panel-title">Your Upcomming Classes</h3>
-          <tr>
+          <h3 class="panel-title center"><strong>Your Upcomming Classes</strong></h3>
+          <tr class="success">
       		  <th class= "center">Your mentor is:</th>
       	    <th class= "center">Class begins at:</th>
       	    <th class= "center">Class ends at:</th>
@@ -29,9 +33,9 @@
         <div class="panel-body">
 
           <% @transactions.each do |transaction| %>
-            <tr>
-
-              <td><%= transaction.available_time.expert.firstname %>
+            <tr> 
+              <td>
+                  <%= transaction.available_time.expert.firstname %>
                   <%= transaction.available_time.expert.lastname %>
               </td>
               <td><%= transaction.available_time.start_time %> h</td>
@@ -45,7 +49,7 @@
       </div><!-- panel-default -->
 
     <% else %>
-      <p class="center lead"><%= link_to "Choose an expert and make a reservation now", experts_path %></p>  
+      <p class="lead"><%= link_to "Choose an expert and make a reservation now", experts_path %></p>  
     <% end %>
 
   </div> 

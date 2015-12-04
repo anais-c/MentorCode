@@ -21,10 +21,11 @@
 
       <%= f.label :experience %>
       <%= f.text_field :experience, class: 'form-control' %>   
-       
-      <%= f.label :picture %>
-      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-      
+      <span class="picture"> 
+        <%= f.label :picture %>
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </span>
+
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 

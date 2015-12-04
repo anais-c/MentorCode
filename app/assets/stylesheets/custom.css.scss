@@ -2,8 +2,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.center {
+  text-align: center;
+}
+
 body {
   padding-top: 50px;
+  background-color: #f1f1f1;
 }
 
 ul.nav, .jumbotron h1 {
@@ -14,20 +19,6 @@ ul.nav {
   font-size: 13px;
 }
 
-footer {
-  background-color: #f74c3c;
-  padding-top: 150px;
-  padding-bottom: 30px;
-  position: relative;
-}
-
-footer .container p {
-  font-family: 'Arvo', serif;
-}
-
-footer #subtitle {
-  color: white;
-}
 
 #logo {
   font-family: 'Arvo', serif;
@@ -55,9 +46,10 @@ footer #subtitle {
 }
 
 .jumbotron h1 {
-  margin-top: 0px;
+  margin-top: 30px;
   margin-bottom: 100px;
   color: black;
+  font-size: 42px;
 }
 
 .jumbotron p {
@@ -65,10 +57,6 @@ footer #subtitle {
   font-weight: 100;
   padding: 0 50px;
   color: black;
-}
-
-.btn-lg {
-  font-size: 36px;
 }
 
 .homepage {
@@ -84,26 +72,25 @@ footer #subtitle {
 }
 
 .homepage h2 {
-  font-size: 30px;
+  margin-top: 40px;  
+  font-size: 21px;
 }
 
 .homepage h3 {
-  font-size: 26px;
+  font-size: 21px;
 }
 
 .homepage p {
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 300;
 }
 
 .homepage a {
-  color: #e74c3c;
+ 
 }
 
 .homepage a:hover {
-  color: #e74c3c;
-  text-decoration: none;
-  opacity: .8;
+
 }
 
 .homepage hr {
@@ -117,8 +104,8 @@ footer #subtitle {
 }
 
 .show_name {
-	color: #337ab7;
-  margin-bottom: 30px;
+  font-family: 'Arvo', courier, serif;
+  margin-bottom: 60px;
 }
 
 .show-info {
@@ -126,7 +113,39 @@ footer #subtitle {
 }
 
 .add-time {
+  margin-top: 50px;
   margin-bottom: 20px;
+}
+
+.box {
+  margin: 15px 0px;
+}
+
+.expert-box {
+  padding: 0px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+#availability {
+  padding: 0px;
+}
+
+h4 a {
+  font-family: 'Arvo', courier, serif;
+  color: black;
+}
+
+.signup {
+  font-size: 21px;
+}
+
+#name {
+  margin-bottom: 20px;
+}
+
+#dashboard {
+  margin-top: 45px;
 }
 
 /* mixins, variables, etc. */
@@ -167,14 +186,6 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
 
 /* forms */
 
@@ -236,12 +247,28 @@ input {
 
 /* User show */
 
-.panel-heading .panel-title {
+.expert-link {
   padding-top: 20px;
 }
 
-.expert-link {
-  padding-top: 20px;
+.table {
+  margin-bottom: 0px;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.panel-heading {
+  background-color: #dff0d8;
+}
+
+#picture img {
+  border-radius: 5px;
+}
+
+.user-gravatar {
+  margin-bottom: 20px;
 }
 
 /* Responsive Styling */
@@ -289,10 +316,6 @@ input {
 
   .homepage p {
     font-size: 18px;
-  }
-
-  footer img {
-    width: 80%;
   }
 
 }

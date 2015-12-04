@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-
+  <div class="col-md-6 col-md-offset-3 expert-box">
+    <h3 style="text-decoration: underline">Expert information</h3>
     <div class="col-md-4 pull-right center">
-      <section class="picture center">
+      <section class="picture">
         <!--assets/images -->
-        <%= image_tag("007.jpg", :size => '260x220') %>
+        <%= image_tag(@expert.picture.url, size: "190x198") if @expert.picture? %>
       </section>  
     </div><!-- end col-md-4 -->
 
@@ -14,8 +14,8 @@
       </div> 
 
       <div class="show-info">
-        <h4><strong>Location:</strong> <%= @expert.location %></h4>      
-        <h4><strong>Experience:</strong></h4>  
+        <h5><strong>Location:</strong> <%= @expert.location %></h5>      
+        <h5><strong>Experience:</strong></h5>  
         <p><%= @expert.experience %></p>
       </div>      
     </div><!-- end col-md-8 --> 
@@ -27,13 +27,13 @@
       <% if @expert.available_times.any? %>
         <div class="panel panel-default">
 
-          <div class="panel-heading">
-            <h3 class="panel-title">Availability</h3>
+          <div class="panel-heading center">
+            <h3 class="panel-title"><strong>Availability</strong></h3>
           </div>
 
           <div class="panel-heading center">
             <table class="table table-striped">
-            <tr>
+            <tr class="success">
               <th class= "center">Date:</th>
               <th class= "center">Class begins at:</th>
               <th class= "center">Class ends at:</th>
@@ -41,7 +41,8 @@
               <th class= "center">Reserve</th>
             </tr>
           </div>
-          <div class="panel-body">
+          
+          <div class="panel-body" id="availability">
             <!-- Table -->
             <% @expert_unreserved_available_times.each do |available_time| %>
             <table class="table table-striped">

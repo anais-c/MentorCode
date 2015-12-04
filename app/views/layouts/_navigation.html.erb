@@ -14,13 +14,13 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "Meet our experts", experts_path %></li>
-          <li><%= link_to "User Profile", user_path(current_user) %></li>
+          <li><%= link_to "#{current_user.firstname} #{current_user.lastname} Student Profile", user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path, method: "delete" %></li>
         <% elsif logged_in_expert? %>
-          <li><%= link_to "Dashboard", dashboard_path(current_expert) %></li>
+          
+          <li><%= link_to "#{current_expert.firstname} Dashboard", dashboard_path(current_expert) %></li>
           <li><%= link_to "Logout", experts_logout_path, method: "delete" %></li>
         <% else %>
-          <li><%= link_to "Expert Login", experts_login_path %></li>
           <li><%= link_to "User Login", login_path %></li>
           <li><%= link_to "Create a User account", signup_path %></li>
         <% end %>

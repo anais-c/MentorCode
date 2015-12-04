@@ -1,23 +1,27 @@
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <div id="dashboard">
+      <h4 style="text-decoration: underline">Dashboard of:</h4>
+    </div>  
+      <div class="show_name">
+        <h4><%= @expert.firstname %> <%= @expert.lastname %></h4>  
+      </div> 
 
     <div class="row">
-      <div class="col-md-4 pull-right center">
-        <section class="picture center">
-          <!--assets/images -->
-          <%= image_tag("007.jpg", :size => '260x220') %>
+      <div class="col-md-4 pull-right">
+        <section class="picture">
+          <%= image_tag(@expert.picture.url, size: "190x198") if @expert.picture? %>
         </section>  
       </div><!-- end col-md-4 -->
 
       <div class="col-md-8">
-        <h2>Dashboard</h2>
-        <div class="show_name">
-          <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
-        </div> 
+
 
         <div class="show-info">
-          <h4><strong>Location:</strong> <%= @expert.location %></h4>      
-          <h4><strong>Experience:</strong></h4>  
+          <h5><strong>Location:</strong> <%= @expert.location %></h5>      
+          <h5><strong>Experience:</strong></h5>  
           <p><%= @expert.experience %></p>
         </div> 
 
@@ -38,11 +42,10 @@
 
         <div class="panel-heading center">
           <table class="table table-striped">
-          <tr>
+          <tr class="success">
             <th class= "center">Date:</th>
             <th class= "center">Class begins at:</th>
             <th class= "center">Class ends at:</th>
-            <th class= "center">id:</th>
           </tr>
         </div>
 
@@ -51,10 +54,9 @@
           <% @available_times.each do |available_time| %>
             <table class="table table-striped">
               <tr>
-                <td><p>Date:</p><%= available_time.date %></td>
-                <td><p>Start:</p><%= available_time.start_time %> h</td>
-                <td><p>End:</p><%= available_time.end_time %> h</td>
-                <td><p>id:</p><%= available_time.id %></td>
+                <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
+                <td><%= available_time.start_time %> h</td>
+                <td><%= available_time.end_time %> h</td>
               </tr> 
             </table>   
           <% end %>  
@@ -64,58 +66,56 @@
     <% end %>
 
     <% if @transactions.any?%>
+
       <div class="panel panel-default">
 
-
-      <% if !@pending_transactions.empty? %>
+        <% if !@pending_transactions.empty? %>
           <div class="panel-heading">
-          <h3 class="panel-title">Transactions to confirm:</h3>
-        </div>
+            <h3 class="panel-title center">Transactions to confirm:</h3>
+          </div>
 
-        <div class="panel-heading center">
-          <table class="table table-striped">
-          <tr>
-            <th class= "center">Date:</th>
-            <th class= "center">Class begins at:</th>
-            <th class= "center">Class ends at:</th>
-            <th class= "center">id:</th>
-          </tr>
-        </div>
+          <div class="panel-heading center">
+            <table class="table table-striped">
+            <tr>
+              <th class= "center">Date:</th>
+              <th class= "center">Class begins at:</th>
+              <th class= "center">Class ends at:</th>
+              <th class= "center">id:</th>
+            </tr>
+          </div>
         
 
-      <div class="panel-body">
-        <% @pending_transactions.each do |transaction| %>
-          <table class="table table-striped">
-            <tbody>
-              <tr>
-                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                <td><%= transaction.available_time.start_time %></td>
-                <td><%= transaction.available_time.end_time %></td>
-                <td><%= transaction.available_time.id %></td>
+          <div class="panel-body">
+            <% @pending_transactions.each do |transaction| %>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                    <td><%= transaction.available_time.start_time %></td>
+                    <td><%= transaction.available_time.end_time %></td>
+                    <td><%= transaction.available_time.id %></td>
 
-                <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
-                      <%= submit_tag "Confirm" %>        
-                    <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>        
-        <% end %>
+                    <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+                          <%= submit_tag "Confirm" %>        
+                        <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>        
+            <% end %>
     <%end%>
-     
-
 
         <div class="panel-heading">
-          <h3 class="panel-title">Transactions confirmed:</h3>
+          <h3 class="panel-title center">Transactions confirmed:</h3>
         </div>
+
         <div class="panel-heading center">
 
           <table class="table table-striped">
-          <tr>
+          <tr class="success">
             <th class= "center">Date:</th>
             <th class= "center">Class begins at:</th>
             <th class= "center">Class ends at:</th>
-            <th class= "center">id:</th>
           </tr>
         </div>
 
@@ -128,7 +128,6 @@
                 <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
                 <td><%= transaction.available_time.start_time %></td>
                 <td><%= transaction.available_time.end_time %></td>
-                <td><%= transaction.available_time.id %></td>
               </tr>
             </tbody>
           </table>        

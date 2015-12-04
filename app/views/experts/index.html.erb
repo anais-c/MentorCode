@@ -7,22 +7,19 @@
 
     <% @experts.each do |expert| %>
 
-      <div class="row">
+      <div class="row box">
 
         <div class="col-md-4">
-          <section class="picture center">
-            <% if expert.picture? %>
-              <%= image_tag expert.picture.url %>
-            <% else %>
-              <img src="007.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
-            <% end %>
+          <section class="center" id="picture">
+            <%= image_tag(expert.picture.url, size: "180x198") if expert.picture? %>
           </section>  
         </div> 
 
         <div class="col-lg-8 well">
-          <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
-          <p>Location: <%= expert.location %></p>
-          <h5>Experience:</h5>
+          <h4 id="name"><%= link_to expert.firstname, expert_path(expert) %></h4>    
+          <h6><strong>Location:</strong></h6>
+          <p><%= expert.location %></p>
+          <h6><strong>Experience:</strong></h6>
           <p><%= expert.experience %></p>
           <%= link_to "See disponibility", expert_path(expert), class: "btn btn-primary" %>
         </div> 

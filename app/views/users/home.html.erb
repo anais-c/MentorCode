@@ -4,7 +4,7 @@
   <div class="container">
     <h1>Make your learning expirience </br>better and faster<br>with the help of a mentor near you_</h1>
 
-    <%= link_to "Sign up now", signup_path, class: "btn btn-danger btn-lg" %>      
+    <%= link_to "Sign up now", signup_path, class: "btn btn-danger btn-lg signup" %>      
     </br>
     </br>
     </br>
@@ -39,7 +39,7 @@
         </span>
         <h3>Students</h3>
         <p>Want to learn how to code? Sign up now to see all the available experts and their schedules.</p>
-        <p><a class="btn btn-default" href="grid.html" role="button">Start Learning &raquo;</a></p>
+        <%= link_to "Join us", new_user_path, class:"btn btn-danger" %>
       </div>
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -48,7 +48,7 @@
         </span>
         <h3>Educators</h3>
         <p>If you want to share your knowledge and help others, mentorship will make you happy. Become a mentor now.</p>
-        <p><a class="btn btn-default" href="http://www.google.com" target="_blank" role="button">Join the Initiative &raquo;</a></p>
+        <%= link_to "Join as a mentor", new_expert_path, class:"btn btn-danger" %>
       </div>
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -57,7 +57,7 @@
         </span>
         <h3>Sponsors</h3>
         <p>We love all the support we get to help host more events, and empower more lives with the knowledge of coding. Click to get involved.</p>
-        <p><a class="btn btn-default" href="https://docs.google.com/forms/d/1pG9YsCpR18geLOiaiN7FzGevC09sE2I-Qzy93mkIs7E/viewform" target="_blank" role="button">Give Support &raquo;</a></p>
+        <%= link_to "Give Support", class:"btn btn-danger" %>
       </div>
     </div>
   </div> <!-- /container -->
