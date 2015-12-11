@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div id="dashboard">
@@ -32,112 +30,75 @@
     </div>
 
     <% if @expert.available_times.any?%>
-      <div class="panel panel-default">
+      <h4 class="text-center">My Available Times</h4>
 
-        <div class="panel-heading">
-          <h3 class="panel-title center">My Available Times</h3>
-        </div>
+      <table class="table table-striped">
+        <tr class="success">
+          <th class="center">Date:</th>
+          <th class= "center">Class begins at:</th>
+          <th class= "center">Class ends at:</th>
+        </tr>
 
-        <div class="panel-heading center">
-          <table class="table table-striped">
-          <tr class="success">
-            <th class="center">Date:</th>
-            <th class= "center">Class begins at:</th>
-            <th class= "center">Class ends at:</th>
-          </tr>
-        </div>
-
-        <div class="panel-body">
-          <!-- Table -->
-          <% @available_times.each do |available_time| %>
-            <table class="table table-striped">
-              <tr>
-                <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
-                <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
-                <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
-              </tr> 
-            </table>   
-          <% end %>  
-        </div><!-- end panel-body -->
-
-      </div><!-- panel-default -->
+        <% @available_times.each do |available_time| %>
+          <tr>
+            <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
+            <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
+            <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
+          </tr> 
+        <% end %>  
+      </table>
     <% end %>
 
     <% if @transactions.any?%>
-
-      <div class="panel panel-default">
-
-        <% if !@pending_transactions.empty? %>
-          <div class="panel-heading">
-            <h3 class="panel-title center">Transactions to confirm:</h3>
-          </div>
-
-          <div class="panel-heading center">
-            <table class="table table-striped">
-            <tr>
-              <th class= "center success">Student:</th>
-              <th class= "center success">Date:</th>
-              <th class= "center success">Class begins at:</th>
-              <th class= "center success">Class ends at:</th>
-              <th class= "center success">Reserve</th>
-            </tr>
-          </div>
-        
-
-          <div class="panel-body">
-            <% @pending_transactions.each do |transaction| %>
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                    <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
-                    <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %></td>
-                    <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %></td>
-
-                    <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
-                          <%= submit_tag "Confirm" %>        
-                        <% end %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>        
-            <% end %>
+      <% if !@pending_transactions.empty? %>
+        <h4 class="text-center">Transactions to confirm:</h4>
+        <table class="table table-striped">
+          <tr>
+            <th class= "center success">Student:</th>
+            <th class= "center success">Date:</th>
+            <th class= "center success">Class begins at:</th>
+            <th class= "center success">Class ends at:</th>
+            <th class= "center success">Reserve</th>
+          </tr>
+          <% @pending_transactions.each do |transaction| %>
+            <tbody>
+              <tr>
+                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
+                <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %> h</td>
+                <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %> h</td>
+                <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+                      <%= submit_tag "Confirm" %>        
+                    <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>    
+        </table>          
     <%end%>
-        <div class="panel-heading">
-          <h3 class="panel-title center">Transactions confirmed:</h3>
-        </div>
 
-        <div class="panel-heading center">
-          <table class="table table-striped">
-            <tr>
-              <th class= "center success">Student:</th>
-              <th class= "center success">Date:</th>
-              <th class= "center success">Class begins at:</th>
-              <th class= "center success">Class ends at:</th>
-            </tr>
-          </table>
-        </div>
-
-        <div class="panel-body">
-          <% if !@confirmed_transactions.empty? %>
-            <% @confirmed_transactions.each do |transaction| %>
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                    <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
-                    <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %></td>
-                    <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %></td>
-                  </tr>
-                </tbody>
-              </table>        
-            <% end %>
-          <% end %>
-        </div><!-- end panel-body -->
-
-      </div><!-- panel-default -->
+    <h4 class="text-center">Transactions confirmed:</h4>
+      <table class="table table-striped">
+        <tr>
+          <th class= "center success">Student:</th>
+          <th class= "center success">Date:</th>
+          <th class= "center success">Class begins at:</th>
+          <th class= "center success">Class ends at:</th>
+        </tr>
+      <% if !@confirmed_transactions.empty? %>
+        <% @confirmed_transactions.each do |transaction| %>
+            <tbody>
+              <tr>
+                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
+                <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %></td>
+                <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %></td>
+              </tr>
+            </tbody>     
+        <% end %>
+      <% end %>
+      </table>  
     <% end %>
-
   </div> 
 </div>
 
