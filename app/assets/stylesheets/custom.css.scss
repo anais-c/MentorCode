@@ -7,7 +7,7 @@
 }
 
 body {
-  padding-top: 50px;
+  padding-top: 31px;
   background-color: #f1f1f1;
 }
 
@@ -148,6 +148,13 @@ h4 a {
   margin-top: 45px;
 }
 
+.table {
+  text-align: center;
+}
+
+#mentor-title {
+  margin-left: 30px;
+}
 /* mixins, variables, etc. */
 
 @mixin box_sizing {

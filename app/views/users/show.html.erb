@@ -21,10 +21,12 @@
       <div class="panel panel-default">
 
         <div class="panel-heading center">
+
           <table class="table table-striped">
           <h3 class="panel-title center"><strong>Your Upcomming Classes</strong></h3>
           <tr class="success">
       		  <th class= "center">Your mentor is:</th>
+            <th class= "center">Date:</th>
       	    <th class= "center">Class begins at:</th>
       	    <th class= "center">Class ends at:</th>
           </tr>
@@ -38,12 +40,14 @@
                   <%= transaction.available_time.expert.firstname %>
                   <%= transaction.available_time.expert.lastname %>
               </td>
-              <td><%= transaction.available_time.start_time %> h</td>
-              <td><%= transaction.available_time.end_time %> h</td>      
+              <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %> h</td>
+              <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %> h</td>
+              <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %> h</td>      
             </tr>          
           <% end %>
 
           </table>
+          
         </div><!-- end panel-body -->
 
       </div><!-- panel-default -->
