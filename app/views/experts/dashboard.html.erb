@@ -1,104 +1,117 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div id="dashboard">
-      <h4 style="text-decoration: underline">Dashboard of:</h4>
-    </div>  
-    <div class="show_name">
-      <h4><%= @expert.firstname %> <%= @expert.lastname %></h4>  
-    </div> 
+<div class="dash-title">
+  <div class="title text-center">
+    <h3>Dashboard</h3>
+    <h4><%= @expert.firstname %> <%= @expert.lastname %></h4>
+  </div>
+      <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+    <%= render 'layouts/messages' %>
+      </div>
+    </div>
+</div><!-- page-title -->
+
+
+
+  <div class="mentor-info">
 
     <div class="row">
-      <div class="col-md-4 pull-right">
-        <section class="picture">
+      <div class="col-md-4 col-md-offset-4 center">
+        <div>
           <%= image_tag(@expert.picture.url, size: "190x198") if @expert.picture? %>
-        </section>  
+        </div>  
       </div><!-- end col-md-4 -->
+    </div>  <!-- end row -->
 
-      <div class="col-md-8">
-        <div class="show-info">
-          <h5><strong>Location:</strong> <%= @expert.location %></h5>      
-          <h5><strong>Experience:</strong></h5>  
-          <p><%= @expert.experience %></p>
-        </div> 
-
-      </div><!-- end col-md-8 --> 
-
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 center">
+        <h5><i class="fa fa-globe"></i>  <strong>Location:</strong> <%= @expert.location %></h5>      
+        <h5><i class="fa fa-briefcase"></i>  <strong>Experience:</strong></h5>  
+        <p><%= @expert.experience %></p>  
+      </div><!-- end col-md-6 --> 
     </div><!-- end row -->
+    
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 center">
+        <%= link_to "Add available time", new_available_time_path, class:"btn available" %>
+      </div><!-- end col-md-4 -->
+    </div><!-- row -->
 
-    <div class="add-time">
-      <%= link_to "Add available time", new_available_time_path, class:"btn btn-primary" %>
-    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
 
-    <% if @expert.available_times.any?%>
-      <h4 class="text-center">My Available Times</h4>
+        <% if @expert.available_times.any?%>
+          <h4 class="text-center">My Available Times</h4>
 
-      <table class="table table-striped">
-        <tr class="success">
-          <th class="center">Date:</th>
-          <th class= "center">Class begins at:</th>
-          <th class= "center">Class ends at:</th>
-        </tr>
+          <table class="table table-striped">
+            <tr class="success">
+              <th class="center">Date</th>
+              <th class= "center">Begins</th>
+              <th class= "center">Ends</th>
+            </tr>
+          <% @available_times.each do |available_time| %>
+            <tr>
+              <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
+              <td><%= available_time.start_time.strftime("%H:%M") %> h</td>
+              <td><%= available_time.end_time.strftime("%H:%M") %> h</td>
+            </tr> 
+          <% end %>  
+          </table>
+        <% end %>
 
-        <% @available_times.each do |available_time| %>
-          <tr>
-            <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
-            <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
-            <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
-          </tr> 
-        <% end %>  
-      </table>
-    <% end %>
-
-    <% if @transactions.any?%>
-      <% if !@pending_transactions.empty? %>
-        <h4 class="text-center">Transactions to confirm:</h4>
-        <table class="table table-striped">
-          <tr>
-            <th class= "center success">Student:</th>
-            <th class= "center success">Date:</th>
-            <th class= "center success">Class begins at:</th>
-            <th class= "center success">Class ends at:</th>
-            <th class= "center success">Reserve</th>
-          </tr>
-          <% @pending_transactions.each do |transaction| %>
-            <tbody>
+        <% if @transactions.any?%>
+          <% if !@pending_transactions.empty? %>
+            <h4 class="text-center">Transactions to confirm:</h4>
+            <table class="table table-striped">
               <tr>
-                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
-                <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %> h</td>
-                <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %> h</td>
-                <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
-                      <%= submit_tag "Confirm" %>        
-                    <% end %>
-                </td>
+                <th class= "center success">Student:</th>
+                <th class= "center success">Date</th>
+                <th class= "center success">Begins</th>
+                <th class= "center success">Ends</th>
+                <th class= "center success">Reserve</th>
               </tr>
-            </tbody>
-          <% end %>    
-        </table>          
-    <%end%>
+              <% @pending_transactions.each do |transaction| %>
+                <tbody>
+                  <tr>
+                    <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+                    <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
+                    <td><%= transaction.available_time.start_time.strftime("%H:%M") %> h</td>
+                    <td><%= transaction.available_time.end_time.strftime("%H:%M") %> h</td>
+                    <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+                          <%= submit_tag "Confirm" %>        
+                        <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              <% end %>    
+            </table>          
+          <%end%>
+        <% end %>
 
-    <h4 class="text-center">Transactions confirmed:</h4>
-      <table class="table table-striped">
-        <tr>
-          <th class= "center success">Student:</th>
-          <th class= "center success">Date:</th>
-          <th class= "center success">Class begins at:</th>
-          <th class= "center success">Class ends at:</th>
-        </tr>
-      <% if !@confirmed_transactions.empty? %>
-        <% @confirmed_transactions.each do |transaction| %>
+        <% if !@confirmed_transactions.empty? %>
+          <h4 class="text-center">Transactions confirmed:</h4>
+          <table class="table table-striped">
+            <tr>
+              <th class= "center success">Student</th>
+              <th class= "center success">Date</th>
+              <th class= "center success">Begins</th>
+              <th class= "center success">Ends</th>
+            </tr>
+          <% @confirmed_transactions.each do |transaction| %>
             <tbody>
               <tr>
                 <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
                 <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
-                <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %></td>
-                <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %></td>
+                <td><%= transaction.available_time.start_time.strftime("%H:%M") %></td>
+                <td><%= transaction.available_time.end_time.strftime("%H:%M") %></td>
               </tr>
             </tbody>     
+          <% end %>
+          </table> 
         <% end %>
-      <% end %>
-      </table>  
-    <% end %>
-  </div> 
-</div>
+              
+      </div><!-- col-md-4 col-md-offset-4 -->
+    </div><!-- row -->
+  </div>  
+
+
 

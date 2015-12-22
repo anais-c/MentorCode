@@ -1,38 +1,36 @@
-
+<div class="dash-title">
+  <div class="title text-center">
+    <h3>Experts Signup</h3>
+    <h4>Become a mentor now!</h4>
+    <p>Please, complete your location, experience and don't forget to add a professional picture.</p>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-   <h2>Experts Signup</h2>
+  <div class="col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 square-2">
+   
     <%= form_for(@expert, html: { multipart: true }) do |f| %>
 
       <%= render 'shared/expert_error_messages' %>
 
-      <%= f.label :first_name %>
-      <%= f.text_field :firstname, class: 'form-control' %>
+      <%= f.text_field :firstname, class: 'form-control', placeholder: "First name" %>
 
-      <%= f.label :last_name %>
-      <%= f.text_field :lastname, class: 'form-control' %>      
+      <%= f.text_field :lastname, class: 'form-control', placeholder: "Last name" %>      
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>
 
-      <%= f.label :location %>
-      <%= f.text_field :location, class: 'form-control' %> 
+      <%= f.text_field :location, class: 'form-control', placeholder: "Location" %> 
 
-      <%= f.label :experience %>
-      <%= f.text_field :experience, class: 'form-control' %>   
+      <%= f.text_field :experience, class: 'form-control', placeholder: "Experience" %>   
       <span class="picture"> 
-        <%= f.label :picture %>
-        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+        <%= f.label :your_picture %><%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
       </span>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Password" %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Password Confirmation" %>
 
-      <%= f.submit "Create account", class: "btn btn-primary" %>
+      <%= f.submit "Create account", class: "btn btn-lg" %>
     <% end %>
   </div>
 </div>

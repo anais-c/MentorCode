@@ -1,74 +1,75 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3 expert-box">
-    <h3 style="text-decoration: underline">Expert information</h3>
-    <div class="col-md-4 pull-right center">
-      <section class="picture">
-        <%= image_tag(@expert.picture.url, size: "190x198") if @expert.picture? %>
-      </section>  
-    </div><!-- end col-md-4 -->
+<div class="page-title">
+  <div class="title text-center">
+    <h3>Mentor:</h3>
+    <h4><%= @expert.firstname %> <%= @expert.lastname %></h4>
+  </div>
+</div><!-- page-title -->
 
-    <div class="col-md-8">
-      <div class="show_name">
-        <h3><%= @expert.firstname %> <%= @expert.lastname %></h3>  
-      </div> 
-
-      <div class="show-info">
-        <h5><strong>Location:</strong> <%= @expert.location %></h5>      
-        <h5><strong>Experience:</strong></h5>  
-        <p><%= @expert.experience %></p>
-      </div>      
-    </div><!-- end col-md-8 --> 
-
-  </div><!-- end row -->
-
+<div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <% if @expert.available_times.any? %>
-        <div class="panel panel-default">
+      <div class="mentor-info">
 
-          <div class="panel-heading center">
-            <h3 class="panel-title"><strong>Availability</strong></h3>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div>
+              <%= image_tag(@expert.picture.url, size: "190x198") if @expert.picture? %>
+            </div>  
           </div>
+        </div>
 
-          <div class="panel-heading center">
-            <table class="table table-striped">
-            <tr class="success">
-              <th class= "center">Date:</th>
-              <th class= "center">Class begins at:</th>
-              <th class= "center">Class ends at:</th>
-              <th class= "center">Reserve</th>
-            </tr>
+        <div class="row">  
+          <div class="col-md-6 col-md-offset-3 center">  
+              <h5><i class="fa fa-globe"></i>  <strong>Location:</strong> <%= @expert.location %></h5>      
+              <h5><i class="fa fa-briefcase"></i>  <strong>Experience:</strong></h5>  
+              <p><%= @expert.experience %></p>  
           </div>
-          
-          <div class="panel-body" id="availability">
-            <!-- Table -->
-            <% @expert_unreserved_available_times.each do |available_time| %>
-            <table class="table table-striped">
-              <tr>
-                <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
-                <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
-                <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
-                <td>
-                  <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
-                  del experts controller -->
+        </div>
 
-                  <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
-                    <%= hidden_field_tag "available_time_id", available_time.id %>
-                    <%= f.submit "Reserve", class: "btn btn-primary" %>
-                  <% end %>
-                </td>
-
-              </tr>          
-            </table>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <% if @expert_unreserved_available_times.any? %>
+                <h4 class="text-center">Availability for classes</h4>
+                <table class="table table-striped">
+                  <tr class="success">
+                    <th class="center">Date:</th>
+                    <th class="center">Class begins at:</th>
+                    <th class="center">Class ends at:</th>
+                    <th class="center">Reserve</th>
+                  </tr>
+                  <% @expert_unreserved_available_times.each do |available_time| %>
+                    <tr>
+                      <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
+                      <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
+                      <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
+                        <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
+                        del experts controller -->
+                      <% if logged_in? %>
+                        <td>
+                          <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
+                            <%= hidden_field_tag "available_time_id", available_time.id %>
+                            <%= f.submit "Reserve" %>
+                          <% end %>
+                        </td>  
+                      <% else %>
+                        <td>
+                          <%= link_to "Login", login_path %> or
+                          <%= link_to "Signup", signup_path %>
+                        </td>  
+                      <% end %> 
+                    </tr> 
+                  <% end %>           
+                  </table>  
+            <% else %>
+              <div class="">
+                <p class="text-center">Sorry, this expert doesn't have any available time at this moment. </p>
+              </div>
             <% end %>
-          </div><!-- end panel-body -->
+          </div><!-- col-md-12 -->
+        </div><!-- row -->       
 
-        </div><!-- panel-default -->
-      <% else %>
-        <p>Sorry, this expert doesn't have any available time at this moment. </p>
-      <% end %>
-    </div>
-  </div>  
-
-  </div> 
+      <div><!-- end col-md-6 -->
+    </div><!-- mentor-info -->
+  </div><!-- end row -->
 </div>
+

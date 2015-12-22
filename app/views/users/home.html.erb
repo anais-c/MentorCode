@@ -2,44 +2,67 @@
 <div class="jumbotron">
 
   <div class="container">
-    <h1>Make your learning expirience </br>better and faster<br>with the help of a mentor near you_</h1>
-
-    <%= link_to "Sign up now", signup_path, class: "btn btn-danger btn-lg signup" %>      
-    </br>
-    </br>
-    </br>
-    </br>
-    <%= image_tag("code.png")%>
-  
-    </br>
-    </br>
-
+    <h1>Get help of mentors near you</h1>
+    <p>Reserve for a class and meet with one of them.</p>
+    <%= link_to "Get started now", signup_path, class: "btn btn-lg" %>
+    <%= link_to "See all mentors", experts_path, class: "btn btn-lg more" %>       
   </div><!-- end container -->
 </div><!-- end jumbotron -->
 
-<div id="who">
-  <div class="container homepage">
-    <%= image_tag("academy_brand_med.png")%>
- 
-    <h2>Who We Are</h2>
-    <hr>
-    <p>We are mentor_code. We aim to improve education by connecting with the rigth people. If you are an autonomous learner, you are not alone. Seek mentorship, guidance and advice from experts in your field.</p>
+<div id="what">
+  <div class="container">
+    <h3 class="col-xs-12">What is Mentor_code?</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="lead">Stop feeling lost and start moving in the right direction again.</p>
+        <p class="sub-p">We aim to improve education by connecting with the rigth people. If you are an autonomous learner, you are not alone. Seek mentorship, guidance and advice from experts in your field.</p>
+        <ul id="items">
+          <li>
+            <i class="fa fa-users"></i><span>Find programming and web development mentors in your city.</span>
+          </li>
+          <li >
+            <i class="fa fa-calendar"></i>
+              <span>Choose your favorite mentor and reserve a time for a class near you.</span>
+          </li>
+          <li>
+            <i class="fa fa-line-chart"></i>
+            <span>Get help and support and jumpstart your career!</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6" id="laptop">
+        <%= image_tag("screenshot-macbookair.png")%>
+      </div><!-- end col-md-6 -->
+    </div><!-- end row -->
+
+  </div><!-- end container-->
+  <div class="row">
+    <div class="col-xs-12">
+      <button href="#" class="btn btn-lg">Learn how it works</button>
+    </div>
+  </div>
+</div><!-- end what -->
+
+<div id="want">
+  <div class="text-center">
+     <h3>Do you want to meet our mentors?</h3>
+     <%= link_to "Meet Mentors", experts_path, class:"btn btn-lg" %>
+
   </div>
 </div>
 
 <div id="get-involved">
   <div class="container homepage">
     <h2>Get Involved</h2>
-    <hr>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 involved">
         <span class="fa-stack fa-4x">
           <i class="fa fa-circle fa-stack-2x"></i>
           <i class="fa fa-user fa-stack-1x fa-inverse"></i>
         </span>
         <h3>Students</h3>
         <p>Want to learn how to code? Sign up now to see all the available experts and their schedules and make a reservation for a class!</p>
-        <%= link_to "Join us", new_user_path, class:"btn btn-danger" %>
+        <%= link_to "Join us", new_user_path, class:"btn" %>
       </div>
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -48,7 +71,7 @@
         </span>
         <h3>Educators</h3>
         <p>If you want to share your knowledge and help others, mentorship will make you happy. Become a mentor now.</p>
-        <%= link_to "Join as a mentor", new_expert_path, class:"btn btn-danger" %>
+        <%= link_to "Join as a mentor", new_expert_path, class:"btn" %>
       </div>
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -57,7 +80,7 @@
         </span>
         <h3>Sponsors</h3>
         <p>We love all the support we get to help host more events, and empower more lives with the knowledge of coding. Click to get involved.</p>
-        <%= link_to "Give Support", root_path, class:"btn btn-danger" %>
+        <%= link_to "Give Support", root_path, class:"btn" %>
       </div>
     </div>
   </div> <!-- /container -->

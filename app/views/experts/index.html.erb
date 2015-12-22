@@ -1,31 +1,32 @@
+<div class="page-title">
+  <div class="title text-center">
+    <h3>All Our Mentors</h3>
+  </div>
+</div><!-- page-title -->
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
+    <div id="mentors">
+      <% @experts.each do |expert| %>
 
-    <div class="page-header">
-      <h1 id="mentor-title" style="text-decoration: underline">Mentors</h1>
-    </div>  
-
-    <% @experts.each do |expert| %>
-
-      <div class="row box">
-
-        <div class="col-md-4">
-          <section class="center" id="picture">
-            <%= image_tag(expert.picture.url, size: "180x198") if expert.picture? %>
-          </section>  
-        </div> 
-
-        <div class="col-lg-8 well">
-          <h4 id="name"><%= link_to expert.firstname, expert_path(expert) %></h4>    
-          <h6><strong>Location:</strong></h6>
-          <p><%= expert.location %></p>
-          <h6><strong>Experience:</strong></h6>
-          <p><%= expert.experience %></p>
-          <%= link_to "See disponibility", expert_path(expert), class: "btn btn-primary" %>
-        </div> 
-
-      </div>  
-    <% end %>  
-
-  </div> 
-</div>
+          <div class="col-sm-4">
+            <div class="panel text-center">
+   
+              <%= image_tag(expert.picture.url, size: "198x198") if expert.picture? %>
+              <div class="info">
+                <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
+                <h6><strong>Location:</strong></h6>
+                <p><%= expert.location %></p>
+                </br>
+                <h6><strong>Experience:</strong></h6>
+                <p><%= expert.experience %></p>
+                </br>
+                <%= link_to "See disponibility", expert_path(expert), class: "btn" %>
+              </div>   
+    
+            </div><!-- panel --> 
+          </div> <!-- col-sm-4 -->
+      <% end %>  
+    </div>
+  </div> <!-- end col-md-8 -->
+</div><!-- end row -->

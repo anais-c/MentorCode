@@ -1,11 +1,7 @@
 class AvailableTimesController < ApplicationController
 
   def new
-    @available_time = AvailableTime.new
-    respond_to do |format|
-      format.html
-      format.js
-    end    
+    @available_time = AvailableTime.new   
   end  
 
   def create
