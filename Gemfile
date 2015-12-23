@@ -18,6 +18,7 @@ gem 'mini_magick'
 gem 'fog'
 gem "font-awesome-rails"
 gem 'paperclip'
+gem "aws-sdk"
 
 group :development, :test do
   gem 'byebug'
