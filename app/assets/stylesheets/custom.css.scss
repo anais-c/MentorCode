@@ -291,6 +291,8 @@ ul.nav {
 
 .panel img {
   border-radius: 100px;
+  z-index: 30;
+  position: relative;
 }
 
 .panel h4 {
@@ -300,6 +302,16 @@ ul.nav {
 
 #mentors {
   margin-top: -80px;
+}
+
+#mentors .info {
+    background-color: #fff;
+    padding-top: 62px;
+    z-index: 20;
+    height: 400px;
+    margin-top: -60px;
+    border-radius: 2px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1),0 2px 3px 0 rgba(0,0,0,0.1);    
 }
 
 .homepage {
