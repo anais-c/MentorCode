@@ -14,13 +14,14 @@
    
               <%= image_tag(expert.picture.url, size: "198x198") if expert.picture? %>
               <div class="info">
-                <h4><%= link_to expert.firstname, expert_path(expert) %></h4>    
+                <h4><%= link_to expert.firstname, expert_path(expert) %> <%= link_to expert.lastname, expert_path(expert) %></h4>
+
                 <h6><strong>Location:</strong></h6>
-                <p><%= expert.location %></p>
-                </br>
+                <p class="space"><%= expert.location %></p>
                 <h6><strong>Experience:</strong></h6>
-                <p><%= expert.experience %></p>
-                </br>
+                <div class="module line-clamp">
+                  <p><%= expert.experience %></p>
+                </div>
                 <%= link_to "See disponibility", expert_path(expert), class: "btn" %>
               </div>   
     

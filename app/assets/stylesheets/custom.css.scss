@@ -277,9 +277,9 @@ ul.nav {
 }
 
 .structure {
-    background-color: #fff;
-    margin-top: -183px;
-    border-radius: 2px;  
+  background-color: #fff;
+  margin-top: -183px;
+  border-radius: 2px;  
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.1),0 2px 3px 0 rgba(0,0,0,.1);    
   margin-bottom: 250px;
 }
@@ -308,11 +308,49 @@ ul.nav {
     background-color: #fff;
     padding-top: 62px;
     z-index: 20;
-    height: 400px;
+    height: 385px;
     margin-top: -60px;
     border-radius: 2px;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1),0 2px 3px 0 rgba(0,0,0,0.1);    
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1),0 2px 3px 0 rgba(0,0,0,0.1);   
+    position: relative; 
 }
+
+#mentors .space {
+  margin-bottom: 23px;
+}
+
+#mentors .info .btn {
+  position: absolute;
+  bottom: 22px;
+  left: 35px;
+}
+
+#mentors .info .btn:hover {
+  position: absolute;
+  background-color: transparent;
+  color: #51c1b1;
+  bottom: 22px;
+  left: 35px;
+  border: 1px solid #51c1b1;
+}
+
+.module {
+  width: 225px;
+  margin: 0 0 1em 16px;
+  overflow: hidden;
+}
+
+.module p {
+  margin: 0px 20px;
+  width: 194px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
 
 .homepage {
   text-align: center;
@@ -386,9 +424,9 @@ ul.nav {
 
 #error_explanation ul {
   list-style: none;
-    line-height: 24px;
-    padding-left: 0px;
-    text-align: center;
+  line-height: 24px;
+  padding-left: 0px;
+  text-align: center;
 }
 /* mixins, variables, etc. */
 
