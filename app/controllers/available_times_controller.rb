@@ -9,7 +9,7 @@ class AvailableTimesController < ApplicationController
     @available_time.expert = current_expert
 
     if @available_time.save
-      flash[:success] = "You added an available time successfully!"
+      flash[:success] = "Available time added successfully!"
       redirect_to dashboard_path(current_expert)
     else
       render 'dashboard'

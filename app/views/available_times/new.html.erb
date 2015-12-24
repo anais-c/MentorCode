@@ -5,16 +5,12 @@
 	<p>Add your time in a 24 h format:</p>
       </br>
 	  <%= form_for(@available_time) do |f| %>
-
 	      <%= f.label :date %>
 	      <%= f.date_field :date, class: 'form-control' %>  
-
 	      <%= f.label :Start %>
 	      <%= f.time_field :start_time, class: 'form-control' %> 
-	     
 	      <%= f.label :End %>
 	      <%= f.time_field :end_time, class: 'form-control' %> 
-
 	      <%= f.submit "Create", class: "btn" %>
 	  <% end %>
 	  <br/>

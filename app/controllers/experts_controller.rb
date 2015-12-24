@@ -23,33 +23,21 @@ class ExpertsController < ApplicationController
   end
 
   def show
-    
     @expert = Expert.find(params[:id])
     @expert_unreserved_available_times = @expert.available_times.where(reserved: false)
     @user = current_user
     @transaction = Transaction.new
-
-
   end
 
   def dashboard
-    #binding.pry
-
-    #@expert = Expert.find(params[:id])
-
     @expert = current_expert
+    @available_times = @expert.available_times    
     @transactions = @expert.transactions
+    @pending_transactions = @transactions.where(status: "pending")    
     @confirmed_transactions = @transactions.where(status: "ok")
-    @pending_transactions = @transactions.where(status: "pending")
-    @available_times = @expert.available_times
-    #binding.pry
-
-    #@transactions = @available_time.transactions
-    
   end
 
   def update
-    #binding.pry
     @user = User.find_by[:user_id]
     @transaction = Transaction.find_by(id)
     if @transaction.update_attributes(:status, "ok")
