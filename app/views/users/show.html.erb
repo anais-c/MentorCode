@@ -36,13 +36,12 @@
           </div><!-- panel-heading -->
 
           <div class="panel-body">
-            <% @transactions.each do |transaction| %>
+            <% @ordered_transactions.each do |transaction| %>
               <tr> 
                 <td>
-                  <%= transaction.available_time.expert.firstname %>
-                  <%= transaction.available_time.expert.lastname %>
+                  <%= link_to "#{transaction.available_time.expert.firstname} #{transaction.available_time.expert.lastname}", expert_path(transaction.available_time.expert.id) %>
                 </td>
-                <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %> h</td>
+                <td><%= transaction.available_time.date.strftime("%d/%m/%Y") %> h</td>
                 <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %> h</td>
                 <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %> h</td>      
               </tr>          

@@ -29,32 +29,60 @@
     
     <div class="row">
       <div class="col-md-4 col-md-offset-4 center">
-        <%= link_to "Add available time", new_available_time_path, class:"btn available" %>
+        <button type="button" class="btn available" data-toggle="modal" data-target="#mynewtime">
+          Add Available Time
+        </button>        
       </div><!-- end col-md-4 -->
     </div><!-- row -->
 
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
+  <!-- Modal create action -->
+  <%= form_for(@available_time, remote: true) do |f| %>
+    <div class="modal fade" id="mynewtime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-        <% if @expert.available_times.any?%>
-          <h4 class="text-center">My Available Times</h4>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Available Time</h4>
+          </div><!-- end modal-header -->
 
-          <table class="table table-striped">
-            <tr class="success">
-              <th class="center">Date</th>
-              <th class= "center">Begins</th>
-              <th class= "center">Ends</th>
-            </tr>
-          <% @available_times.each do |available_time| %>
-            <tr>
-              <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
-              <td><%= available_time.start_time.strftime("%H:%M") %> h</td>
-              <td><%= available_time.end_time.strftime("%H:%M") %> h</td>
-            </tr> 
-          <% end %>  
-          </table>
-        <% end %>
+          <div class="modal-body">
 
+            <div class="field">    
+              <%= f.label :date %>
+              <%= f.date_field :date, class: 'form-control time_date' %>
+            </div>
+            <div class="field">
+              <%= f.label :Start %>
+              <%= f.time_field :start_time, class: 'form-control time_start' %> 
+            </div>
+            <div class="field">
+              <%= f.label :End %>
+              <%= f.time_field :end_time, class: 'form-control time_end' %> 
+            </div>        
+          </div><!-- end modal-body -->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewtimeclose">Close</button>
+            <%= submit_tag "Create", class: "btn btn-primary" %>
+          </div>
+        </div><!-- end modal-content -->
+      </div><!-- end modal-dialog -->
+    </div><!-- end modal fade -->
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 times">
+        <h4 class="text-center">My Available Times</h4>
+          <div id="container_times" class="center">
+            <%= render @available_times %> 
+          </div>
+    </div>    
+  </div>
+</div> 
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" >
         <% if @transactions.any?%>
           <!-- si @pending_transactions no está vacio, es decir, si hay transactions con status "pending" -->
           <% if !@pending_transactions.empty? %>
@@ -69,12 +97,12 @@
               </tr>
               <% @pending_transactions.each do |transaction| %>
                 <tbody>
-                  <tr>
+                  <tr id="mytransaction_<%= transaction.id %>">
                     <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                    <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
+                    <td><%= transaction.available_time.date.strftime("%d/%m/%Y") %></td>
                     <td><%= transaction.available_time.start_time.strftime("%H:%M") %> h</td>
                     <td><%= transaction.available_time.end_time.strftime("%H:%M") %> h</td>
-                    <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT") do %>
+                    <td><%= form_tag("/users/#{transaction.user.id}/transactions/#{transaction.id}", method: "PUT", remote: true) do %>
                           <%= submit_tag "Confirm" %>        
                         <% end %>
                     </td>
@@ -85,8 +113,8 @@
           <%end%>
         <% end %>
 
-        <% if !@confirmed_transactions.empty? %>
           <h4 class="text-center">Transactions confirmed:</h4>
+
           <table class="table table-striped">
             <tr>
               <th class= "center success">Student</th>
@@ -94,22 +122,20 @@
               <th class= "center success">Begins</th>
               <th class= "center success">Ends</th>
             </tr>
-          <% @confirmed_transactions.each do |transaction| %>
-            <tbody>
-              <tr>
-                <td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
-                <td><%= transaction.available_time.date.strftime("%m/%d/%Y") %></td>
-                <td><%= transaction.available_time.start_time.strftime("%H:%M") %></td>
-                <td><%= transaction.available_time.end_time.strftime("%H:%M") %></td>
-              </tr>
+      
+            <tbody id="confirm">
+              <%= render @confirmed_transactions %>
             </tbody>     
-          <% end %>
+         
           </table> 
-        <% end %>
+
+          <% if @confirmed_transactions.empty? %>
+            <p class="text-center">Any transaction confirmed yet</p>
+          <% end %>
               
       </div><!-- col-md-4 col-md-offset-4 -->
-    </div><!-- row -->
-  </div>  
+    </div><!-- row -->  
+
 
 
 

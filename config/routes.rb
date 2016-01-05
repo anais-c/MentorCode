@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/:id' => 'experts#dashboard', as: 'dashboard'
 
+  get 'tags/:tag' => 'experts#index', as: 'tag'
+
   resources :users do
     resources :transactions
   end

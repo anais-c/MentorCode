@@ -139,6 +139,7 @@ ul.nav {
 
 .mentor-info h4 {
   margin-top: 50px;
+  margin-bottom: 33px;
 }
 
 .mentor-info i {
@@ -300,6 +301,22 @@ ul.nav {
   margin-bottom: 30px;
 }
 
+#time-1 {
+  display: inline-block;
+}
+
+#time-2 {
+display: inline-block;
+}
+
+#time-3 {
+  display: inline-block;
+}
+
+.times p span {
+  margin-right: 30px;
+}
+
 #mentors {
   margin-top: -80px;
 }
@@ -313,6 +330,10 @@ ul.nav {
     border-radius: 2px;
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1),0 2px 3px 0 rgba(0,0,0,0.1);   
     position: relative; 
+}
+
+#mentors .info h6 {
+  margin-top: 30px;
 }
 
 #mentors .space {
@@ -334,23 +355,17 @@ ul.nav {
   border: 1px solid #51c1b1;
 }
 
-.module {
-  width: 225px;
-  margin: 0 0 1em 16px;
-  overflow: hidden;
+#mentors .text p {
+  padding: 10px 20px;
 }
 
-.module p {
-  margin: 0px 20px;
-  width: 194px;
+#container_times {
+
 }
 
-.line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+#container_times .span-2 {
+  padding-left: 30px;
 }
-
 
 .homepage {
   text-align: center;

@@ -14,7 +14,8 @@
       <%= f.text_field :lastname, class: 'form-control', placeholder: "Last name" %>      
       <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>
       <%= f.text_field :location, class: 'form-control', placeholder: "Location" %> 
-      <%= f.text_field :experience, class: 'form-control', placeholder: "Experience" %>   
+      <%= f.text_field :tag_list, class: 'form-control', placeholder: "Tags (separated by commas)"%>
+      <%= f.text_area :experience, size: "60x6", class: 'form-control', placeholder: "Experience" %>   
       <span class="picture"> 
         <%= f.label :your_picture %><%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
       </span>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202141757) do
+ActiveRecord::Schema.define(version: 20151228113052) do
 
   create_table "available_times", force: :cascade do |t|
     t.integer  "expert_id"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20151202141757) do
   end
 
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "expert_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["expert_id"], name: "index_taggings_on_expert_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "available_time_id"

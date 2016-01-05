@@ -30,12 +30,17 @@ class TransactionsController < ApplicationController
   #cambia el :status por defecto de la transaction ("pending") a "ok"
   def update  
     @transaction = Transaction.find(params[:id])
-    if @transaction.update_column(:status, "ok")
-      flash[:success] = "Reserve confirmed"
-      redirect_to dashboard_path(current_expert)
-    else  
-      redirect_to experts_path
-    end
+    
+    respond_to do |format|
+      if @transaction.update_column(:status, "ok")
+        format.html { redirect_to dashboard_path(current_expert) }
+        format.js
+      else  
+        format.html { redirect_to experts_path }
+        format.js
+      end
+    end  
   end
+
 
 end

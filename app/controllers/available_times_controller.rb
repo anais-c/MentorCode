@@ -1,20 +1,34 @@
 class AvailableTimesController < ApplicationController
 
-  def new
-    @available_time = AvailableTime.new   
+  def new 
   end  
+
+  def show
+  end
 
   def create
     @available_time = AvailableTime.new(time_params)
     @available_time.expert = current_expert
 
-    if @available_time.save
-      flash[:success] = "Available time added successfully!"
-      redirect_to dashboard_path(current_expert)
-    else
-      render 'dashboard'
+    respond_to do |format|
+      if @available_time.save
+        format.html {
+            redirect_to dashboard_path(current_expert)}
+        format.js
+      else
+        format.html { render 'dashboard' }
+        format.js
+      end
     end
   end
+
+  def destroy
+    @available_time = AvailableTime.destroy(params[:id])
+    respond_to do |format|
+      format.html { redirect_to dashboard_path(current_expert) }
+      format.js
+    end
+  end 
 
   private
 

@@ -4,7 +4,11 @@ class ExpertsController < ApplicationController
   before_action :correct_expert,   only: [:edit, :update]
 
   def index
-    @experts = Expert.all
+    if params[:tag]
+      @experts = Expert.tagged_with(params[:tag])
+    else
+      @experts = Expert.all
+    end
   end
 
   def new
@@ -25,16 +29,19 @@ class ExpertsController < ApplicationController
   def show
     @expert = Expert.find(params[:id])
     @expert_unreserved_available_times = @expert.available_times.where(reserved: false)
+    @expert_future_unreserved_times = @expert_unreserved_available_times.where('date >= ?', Date.today).order(:date)
     @user = current_user
     @transaction = Transaction.new
   end
 
   def dashboard
     @expert = current_expert
-    @available_times = @expert.available_times    
+    #@available_times = @expert.available_times
+    @available_times = @expert.available_times.where('date >= ?', Date.today).order(:date)
     @transactions = @expert.transactions
     @pending_transactions = @transactions.where(status: "pending")    
     @confirmed_transactions = @transactions.where(status: "ok")
+    @available_time = AvailableTime.new
   end
 
   def update
@@ -45,10 +52,20 @@ class ExpertsController < ApplicationController
     end
   end 
 
+  def destroy
+    console.log("this is experts_controller")
+    @available_time.destroy
+    respond_to do |format|
+      format.html { redirect_to dashboard_path(current_expert) }
+      format.json { head :no_content }
+      format.js
+    end
+  end 
+
   private
 
     def expert_params
-      params.require(:expert).permit(:firstname, :lastname, :email, :experience, :location, :picture, :password,
+      params.require(:expert).permit(:firstname, :lastname, :email, :tag_list, :experience, :location, :picture, :password,
                                    :password_confirmation)
     end
 

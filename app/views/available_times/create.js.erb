@@ -1,0 +1,7 @@
+$("#mynewtime").modal('hide');
+$(".time_date").val('');
+$(".time_start").val('');
+$(".time_end").val('');
+
+$("#container_times").append('<%= j render @available_time %>');
+$("#available_time_<%= @available_time.id %>").hide.fadeIn(1000);

@@ -1,0 +1,4 @@
+$('#mytransaction_<%= @transaction.id %>').fadeOut(500, function() {
+	$(this).remove();
+	$('#confirm').prepend( '<%= j render @transaction %>');
+});

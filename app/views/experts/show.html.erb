@@ -28,18 +28,18 @@
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
-            <% if @expert_unreserved_available_times.any? %>
+            <% if @expert_future_unreserved_times.any? %>
                 <h4 class="text-center">Availability for classes</h4>
                 <table class="table table-striped">
                   <tr class="success">
                     <th class="center">Date:</th>
-                    <th class="center">Class begins at:</th>
-                    <th class="center">Class ends at:</th>
+                    <th class="center">Begins:</th>
+                    <th class="center">Ends:</th>
                     <th class="center">Reserve</th>
                   </tr>
-                  <% @expert_unreserved_available_times.each do |available_time| %>
+                  <% @expert_future_unreserved_times.each do |available_time| %>
                     <tr>
-                      <td><%= available_time.date.strftime("%m/%d/%Y") %></td>
+                      <td><%= available_time.date.strftime("%d/%m/%Y") %></td>
                       <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
                       <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
                         <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
@@ -72,4 +72,6 @@
     </div><!-- mentor-info -->
   </div><!-- end row -->
 </div>
+
+
 

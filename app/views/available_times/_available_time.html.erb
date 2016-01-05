@@ -1,0 +1,10 @@
+
+<p id="available_time_<%= available_time.id %>">
+<span><%= available_time.date.strftime("%d/%m/%Y") %></span>
+<%= available_time.start_time.strftime("%H:%M") %> h -
+<%= available_time.end_time.strftime("%H:%M") %> h 
+<span class="span-2">
+  <%= link_to available_time, remote: :true, method: :delete, data: { confirm: 'Are you sure?' } do %> <button >Delete</button>
+  <% end %>
+</span>
+</p>

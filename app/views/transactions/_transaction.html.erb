@@ -1,0 +1,6 @@
+<tr>
+	<td><%= transaction.user.firstname %> <%= transaction.user.lastname %></td>
+	<td><%= transaction.available_time.date.strftime("%d/%m/%Y") %></td>
+	<td><%= transaction.available_time.start_time.strftime("%H:%M") %></td>
+	<td><%= transaction.available_time.end_time.strftime("%H:%M") %></td>
+</tr>

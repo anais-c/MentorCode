@@ -1,7 +1,9 @@
 class Expert < ActiveRecord::Base
+
   has_many :available_times, dependent: :destroy  
   has_many :transactions, through: :available_times
-
+  has_many :taggings
+  has_many :tags, through: :taggings
   
   before_save {self.email = email.downcase}
   
@@ -23,6 +25,25 @@ class Expert < ActiveRecord::Base
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).experts
+  end
+
+  def self.tag_counts
+    Tag.select("tags.*, count(taggings.tag_id) as count").
+    joins(:taggings).group("taggings.tag_id")
+  end
+
+  def tag_list
+    tags.map(&:name).join(", ")
+  end
+
+  def tag_list=(names)
+    self.tags = names.split(", ").map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
   end
 
   private

@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @transactions = @user.transactions
+
+    @ordered_transactions = @transactions.sort_by { |t| AvailableTime.find(t.available_time_id).date }
+    #@ordered_transactions = @transactions.sort_by { |t| t.updated_at }
   end
 
   def new
