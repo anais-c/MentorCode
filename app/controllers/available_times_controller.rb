@@ -1,6 +1,8 @@
 class AvailableTimesController < ApplicationController
 
   def new 
+    @available_time = AvailableTime.new
+    render :new
   end  
 
   def show
@@ -13,11 +15,8 @@ class AvailableTimesController < ApplicationController
     respond_to do |format|
       if @available_time.save
         format.html {
-            redirect_to dashboard_path(current_expert)}
-        format.js
-      else
-        format.html { render 'dashboard' }
-        format.js
+            redirect_to dashboard_path(current_expert), :notice => "Available time created!"}
+        format.js { render :new unless @available_time.save }
       end
     end
   end

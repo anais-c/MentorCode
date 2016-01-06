@@ -150,6 +150,16 @@ ul.nav {
   margin-top: 30px;
 }
 
+.mentor-info .available:hover {
+  background-color: transparent;
+  border: 1px solid #51C1B1;
+  color: #51C1B1;
+}
+
+.mentor-info .available:focus {
+  color: #f1f1f1;
+}
+
 .page-title {
   min-height: 380px;
   background: linear-gradient(rgba(66,73,88,.8),rgba(66,73,88,.8)),url("class.jpg") no-repeat center;
@@ -313,6 +323,10 @@ display: inline-block;
   display: inline-block;
 }
 
+.times {
+  margin-bottom: 40px;
+}
+
 .times p span {
   margin-right: 30px;
 }
@@ -340,27 +354,32 @@ display: inline-block;
   margin-bottom: 23px;
 }
 
-#mentors .info .btn {
-  position: absolute;
-  bottom: 22px;
-  left: 35px;
-}
-
-#mentors .info .btn:hover {
-  position: absolute;
-  background-color: transparent;
-  color: #51c1b1;
-  bottom: 22px;
-  left: 35px;
-  border: 1px solid #51c1b1;
-}
 
 #mentors .text p {
   padding: 10px 20px;
 }
 
-#container_times {
+#mentors .disp {
+    height: 77px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    padding-top: 6px;
+}
 
+#mentors .boton {
+    position: absolute;
+    width: 80%;
+    border: 1px solid;
+    top: 12px;
+    padding: 11px;
+    left: 10%;
+}
+
+#mentors .boton:hover {
+    background-color: transparent;
+    border: 1px solid #51C1B1;
+    color: #51C1B1;
 }
 
 #container_times .span-2 {

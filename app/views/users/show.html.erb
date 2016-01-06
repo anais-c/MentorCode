@@ -28,24 +28,41 @@
             <table class="table table-striped">
             <h3 class="panel-title center"><strong>Your Upcomming Classes</strong></h3>
             <tr class="success">
-        		  <th class= "center">Your mentor is:</th>
+              <th class= "center">Mentor name:</th>
               <th class= "center">Date:</th>
-        	    <th class= "center">Class begins at:</th>
-        	    <th class= "center">Class ends at:</th>
+              <th class= "center">Begins</th>
+              <th class= "center">Ends</th>
+              <th class= "center">Status</th>
             </tr>
           </div><!-- panel-heading -->
 
           <div class="panel-body">
-            <% @ordered_transactions.each do |transaction| %>
+            <% @confirmed_transactions.each do |transaction| %>
               <tr> 
                 <td>
                   <%= link_to "#{transaction.available_time.expert.firstname} #{transaction.available_time.expert.lastname}", expert_path(transaction.available_time.expert.id) %>
                 </td>
                 <td><%= transaction.available_time.date.strftime("%d/%m/%Y") %> h</td>
-                <td><%= transaction.available_time.start_time.strftime("%H:%M:%S") %> h</td>
-                <td><%= transaction.available_time.end_time.strftime("%H:%M:%S") %> h</td>      
+                <td><%= transaction.available_time.start_time.strftime("%H:%M") %> h</td>
+                <td><%= transaction.available_time.end_time.strftime("%H:%M") %> h</td>
+                <% if transaction.status == "ok" %>
+                  <td><%= "confirmed" %></td>
+                <% end %>                      
               </tr>          
-            <% end %>
+            <% end %>           
+            <% @pending_transactions.each do |transaction| %>
+              <tr> 
+                <td>
+                  <%= link_to "#{transaction.available_time.expert.firstname} #{transaction.available_time.expert.lastname}", expert_path(transaction.available_time.expert.id) %>
+                </td>
+                <td><%= transaction.available_time.date.strftime("%d/%m/%Y") %> h</td>
+                <td><%= transaction.available_time.start_time.strftime("%H:%M") %> h</td>
+                <td><%= transaction.available_time.end_time.strftime("%H:%M") %> h</td>
+                <% if transaction.status == "pending" %>
+                  <td style="color: #337AB7"><%= "waiting confirmation" %></td>
+                <% end %>      
+              </tr>          
+            <% end %>           
             </table> 
           </div><!-- end panel-body -->
         </div><!-- panel-default -->

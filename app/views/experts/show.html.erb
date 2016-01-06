@@ -32,16 +32,16 @@
                 <h4 class="text-center">Availability for classes</h4>
                 <table class="table table-striped">
                   <tr class="success">
-                    <th class="center">Date:</th>
-                    <th class="center">Begins:</th>
-                    <th class="center">Ends:</th>
+                    <th class="center">Date</th>
+                    <th class="center">Begins</th>
+                    <th class="center">Ends</th>
                     <th class="center">Reserve</th>
                   </tr>
                   <% @expert_future_unreserved_times.each do |available_time| %>
                     <tr>
                       <td><%= available_time.date.strftime("%d/%m/%Y") %></td>
-                      <td><%= available_time.start_time.strftime("%H:%M:%S") %> h</td>
-                      <td><%= available_time.end_time.strftime("%H:%M:%S") %> h</td>
+                      <td><%= available_time.start_time.strftime("%H:%M") %> h</td>
+                      <td><%= available_time.end_time.strftime("%H:%M") %> h</td>
                         <!-- las variables de la form @user y @transaction tienen que definirse en en la show action
                         del experts controller -->
                       <% if logged_in? %>

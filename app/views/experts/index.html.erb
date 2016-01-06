@@ -14,7 +14,7 @@
    
               <%= image_tag(expert.picture.url, size: "198x198") if expert.picture? %>
               <div class="info">
-                <h4><%= link_to expert.firstname, expert_path(expert) %> <%= link_to expert.lastname, expert_path(expert) %></h4>
+                <h4><%= link_to "#{expert.firstname} #{expert.lastname}", expert_path(expert) %></h4>
                 <h5><%= expert.location %></h5>
                 <p>
                   Tags: <%= raw expert.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
@@ -27,7 +27,11 @@
                     <p><%= expert.experience %></p>
                   <% end %>  
                 </div>
-                <%= link_to "See disponibility", expert_path(expert), class: "btn" %>
+         
+                  <div class="disp">
+                    <%= link_to "See disponibility", expert_path(expert), class: "boton btn" %>
+                  </div>
+              
               </div>   
     
             </div><!-- panel --> 
