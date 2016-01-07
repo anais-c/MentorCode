@@ -17,7 +17,7 @@
                 <h4><%= link_to "#{expert.firstname} #{expert.lastname}", expert_path(expert) %></h4>
                 <h5><%= expert.location %></h5>
                 <p>
-            
+                  <div><%= render expert.tags %></div>
                 </p>
                 <h6><strong>Experience:</strong></h6>
                 <div class="text">

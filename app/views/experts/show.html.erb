@@ -22,7 +22,8 @@
           <div class="col-md-6 col-md-offset-3 center">  
               <h5><i class="fa fa-globe"></i>  <strong>Location:</strong> <%= @expert.location %></h5>      
               <h5><i class="fa fa-briefcase"></i>  <strong>Experience:</strong></h5>  
-              <p><%= @expert.experience %></p>  
+              <p><%= @expert.experience %></p> 
+              <div><%= render @expert.tags %></div> 
           </div>
         </div>
 

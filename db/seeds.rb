@@ -27,31 +27,31 @@ Expert.destroy_all
              #password_confirmation: "ironhack")
 
 
-5.times do |n|
+#5.times do |n|
 
-  firstname = Faker::Name.first_name
-  lastname = Faker::Name.last_name
-  email = Faker::Internet.email
-  location = "Barcelona"
-  password = "password"
+  #firstname = Faker::Name.first_name
+  #lastname = Faker::Name.last_name
+  #email = Faker::Internet.email
+  #location = "Barcelona"
+  #password = "password"
   
-  User.create!(firstname: firstname,
-               lastname: lastname,
-               email: email,
-               location: location,
-               password:              password,
-               password_confirmation: password)  
-end
+  #User.create!(firstname: firstname,
+               #lastname: lastname,
+               #email: email,
+               #location: location,
+               #password:              password,
+               #password_confirmation: password)  
+#end
 
 
-5.times do |i|
-  Expert.create(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, email: Faker::Internet.email,
-                experience: Faker::Hacker.say_something_smart, location: "Barcelona", password: "password",
-                password_confirmation: "password")
-end
+#5.times do |i|
+  #Expert.create(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, email: Faker::Internet.email,
+                #experience: Faker::Hacker.say_something_smart, location: "Barcelona", password: "password",
+                #password_confirmation: "password")
+#end
 
-Expert.all.each do |expert|
-  expert.available_times.create(date: Faker::Date.forward(30), start_time: Faker::Number.between(1, 10), end_time: Faker::Number.between(1, 10))
-  expert.available_times.create(date: Faker::Date.forward(30), start_time: Faker::Number.between(1, 10), end_time: Faker::Number.between(1, 10))
-end
+#Expert.all.each do |expert|
+  #expert.available_times.create(date: Faker::Date.forward(30), start_time: Faker::Number.between(1, 10), end_time: Faker::Number.between(1, 10))
+  #expert.available_times.create(date: Faker::Date.forward(30), start_time: Faker::Number.between(1, 10), end_time: Faker::Number.between(1, 10))
+#end
 

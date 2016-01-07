@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   
 
   resources :experts
+  resources :tags, only: [:index, :show]
   resources :available_times
-
-  get 'tags/:tag' => 'experts#index', as: 'tag'
-  
 end

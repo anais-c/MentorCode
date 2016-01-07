@@ -4,11 +4,7 @@ class ExpertsController < ApplicationController
   before_action :correct_expert,   only: [:edit, :update]
 
   def index
-    if params[:tag]
-      @experts = Expert.tagged_with(params[:tag])
-    else
-      @experts = Expert.all
-    end
+    @experts = Expert.all
   end
 
   def new
