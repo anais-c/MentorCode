@@ -42,12 +42,4 @@
 </div><!-- end row -->
 
 
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div id="tag_cloud">
-      <% tag_cloud Expert.tag_counts, %w[s m l] do |tag, css_class| %>
-        <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-      <% end %>
-    </div>
-  </div>
-</div>  
+ 
