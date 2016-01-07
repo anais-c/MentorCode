@@ -1,5 +1,7 @@
 class Expert < ActiveRecord::Base
 
+  acts_as_taggable
+
   has_many :available_times, dependent: :destroy  
   has_many :transactions, through: :available_times
   has_many :taggings
@@ -20,6 +22,8 @@ class Expert < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validate :picture_size
+
+
   
   def Expert.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -36,9 +40,9 @@ class Expert < ActiveRecord::Base
     joins(:taggings).group("taggings.tag_id")
   end
 
-  def tag_list
-    tags.map(&:name).join(", ")
-  end
+  #def tag_list
+    #tags.map(&:name).join(", ")
+  #end
 
   def tag_list=(names)
     self.tags = names.split(", ").map do |n|

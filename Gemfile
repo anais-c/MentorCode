@@ -18,6 +18,7 @@ gem 'fog'
 gem "font-awesome-rails"
 gem 'paperclip'
 gem "aws-sdk"
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'byebug'

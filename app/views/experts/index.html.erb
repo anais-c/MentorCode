@@ -17,7 +17,7 @@
                 <h4><%= link_to "#{expert.firstname} #{expert.lastname}", expert_path(expert) %></h4>
                 <h5><%= expert.location %></h5>
                 <p>
-                  Tags: <%= raw expert.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+            
                 </p>
                 <h6><strong>Experience:</strong></h6>
                 <div class="text">

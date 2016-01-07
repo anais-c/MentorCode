@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/:id' => 'experts#dashboard', as: 'dashboard'
 
-  get 'tags/:tag' => 'experts#index', as: 'tag'
+  
 
   resources :users do
     resources :transactions
@@ -27,5 +27,7 @@ Rails.application.routes.draw do
 
   resources :experts
   resources :available_times
+
+  get 'tags/:tag' => 'experts#index', as: 'tag'
   
 end
