@@ -9,7 +9,8 @@
 <div class="row">
   <div class="col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 square-2">
     <%= form_for(@expert, html: { multipart: true, :class => "form-horizontal image" }) do |f| %>
-      <%= render 'shared/expert_error_messages' %>
+      <%= render '/shared/error_messages', object: @expert %>
+
       <%= f.text_field :firstname, class: 'form-control', placeholder: "First name" %>
       <%= f.text_field :lastname, class: 'form-control', placeholder: "Last name" %>      
       <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>

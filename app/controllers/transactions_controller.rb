@@ -13,11 +13,12 @@ class TransactionsController < ApplicationController
   def create
     @user = current_user
     chosen_slot_id = params[:available_time_id]
+    date = params[:date]
 
     chosen_slot = AvailableTime.find_by(id: chosen_slot_id)
     chosen_slot.update(reserved: true)
     
-    @transaction = @user.transactions.new(available_time_id: chosen_slot_id)
+    @transaction = @user.transactions.new(available_time_id: chosen_slot_id, date: date)
 
     if @transaction.save
       flash[:success] = "You made a reservation successfully!"

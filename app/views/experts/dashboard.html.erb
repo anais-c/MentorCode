@@ -37,12 +37,24 @@
 
   <!-- Modal create action -->
   <%= form_for(@available_time, remote: true) do |f| %>
+
     <div class="modal fade" id="mynewtime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <% if @available_time.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@available_time.errors.count, "error") %> prohibited this time from being saved:</h2>
+
+        <ul>
+        <% @available_time.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>  
             <h4 class="modal-title" id="myModalLabel">Add Available Time</h4>
           </div><!-- end modal-header -->
 
@@ -73,12 +85,14 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4 times">
         <h4 class="text-center">My Available Times</h4>
-          <div id="container_times" class="center">
-            <%= render @available_times %> 
-          </div>
+            <div id="container_times" class="center">
+              <%= render @available_times %> 
+            </div>
+
     </div>    
   </div>
 </div> 
+
 
 <div class="container">
   <div class="row">
@@ -137,25 +151,32 @@
               
       </div><!-- col-md-4 -->
     </div><!-- row -->  
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="av_times">
+          <h2 id="month">
+            <%= link_to "<", date: @date.prev_month %>
+            <%= @date.strftime("%B %Y") %>
+            <%= link_to ">", date: @date.next_month %>
+          </h2>
+          <%= calendar @date do |date| %>
+            <%= date.day %>
+            <% if @available_times_by_date[date] %>
+              <ul style="list-style: none">
+                <% @available_times_by_date[date].each do |t| %>
+                  <% if t.reserved == false %>
+                    <li style="color: red">free: <%= t.start_time.strftime("%H:%M") %> - <%= t.end_time.strftime("%H:%M") %> </li>
+                  <% else %>
+                    <li style="color: blue">reserved: <%= t.start_time.strftime("%H:%M") %> - <%= t.end_time.strftime("%H:%M") %></li>
+                  <% end %>  
+                <% end %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div><!-- av_times --> 
+      </div><!-- col-md-12 -->
+    </div><!-- row -->   
   </div><!-- container -->  
 
-<div class="container">
-  <div id="av_times">
-    <h2 id="month">
-      <%= link_to "<", date: @date.prev_month %>
-      <%= @date.strftime("%B %Y") %>
-      <%= link_to ">", date: @date.next_month %>
-    </h2>
-    <%= calendar @date do |date| %>
-      <%= date.day %>
-      <% if @available_times_by_date[date] %>
-        <ul>
-          <% @available_times_by_date[date].each do |t| %>
-            <li><%= t.start_time.strftime("%H:%M") %> <%= t.end_time.strftime("%H:%M") %> </li>
-          <% end %>
-        </ul>
-      <% end %>
-    <% end %>
-  </div>  
-</div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228113052) do
+ActiveRecord::Schema.define(version: 20160106185627) do
 
   create_table "available_times", force: :cascade do |t|
     t.integer  "expert_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20151228113052) do
     t.string   "status",            default: "pending"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.date     "date"
   end
 
   create_table "users", force: :cascade do |t|

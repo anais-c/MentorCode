@@ -157,7 +157,9 @@ ul.nav {
 }
 
 .mentor-info .available:focus {
-  color: #f1f1f1;
+  background-color: transparent;
+  border: 1px solid #51C1B1;  
+  color: #51C1B1;
 }
 
 .page-title {

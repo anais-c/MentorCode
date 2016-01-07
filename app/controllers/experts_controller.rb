@@ -37,7 +37,6 @@ class ExpertsController < ApplicationController
   def dashboard
     @expert = current_expert
     #@available_times = @expert.available_times
-    #@available_times = @expert.available_times.where('date >= ?', Date.today).order(:date)
     @available_times = @expert.available_times.where('date >= ?', Date.today).order(:date)
     @available_times_by_date = @available_times.group_by { |i| i.date.to_date }
     @transactions = @expert.transactions

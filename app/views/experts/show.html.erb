@@ -48,6 +48,7 @@
                         <td>
                           <%= form_for [@user, @transaction], url: "/users/#{@user.id}/transactions" do |f| %>
                             <%= hidden_field_tag "available_time_id", available_time.id %>
+                            <%= hidden_field_tag "date", available_time.date %>
                             <%= f.submit "Reserve" %>
                           <% end %>
                         </td>  
