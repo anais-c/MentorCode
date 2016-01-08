@@ -4,8 +4,12 @@
   <div class="container">
     <h1>Get help of mentors near you</h1>
     <p>Reserve for a class and meet with one of them.</p>
-    <%= link_to "Sign Up now", signup_path, class: "btn btn-lg" %>
-    <%= link_to "See all mentors", experts_path, class: "btn btn-lg more" %>       
+    <div class="row">
+      <div class="col-sx-6">
+        <%= link_to "Sign Up now", signup_path, class: "btn btn-lg" %>
+        <%= link_to "See all mentors", experts_path, class: "btn btn-lg more" %> 
+      </div>
+    </div>      
   </div><!-- end container -->
 </div><!-- end jumbotron -->
 
@@ -13,7 +17,7 @@
   <div class="container">
     <h3 class="col-xs-12">What is Mentor_code?</h3>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-xs-12 col-md-6">
         <p class="lead">Stop feeling lost and start moving in the right direction again.</p>
         <p class="sub-p">We aim to improve education by connecting with the rigth people. If you are an autonomous learner, you are not alone. Seek mentorship, guidance and advice from experts in your field.</p>
         <ul id="items">
@@ -30,7 +34,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-6" id="laptop">
+      <div class="col-xs-12 col-md-6" id="laptop">
         <%= image_tag("screenshot-macbookair.png")%>
       </div><!-- end col-md-6 -->
     </div><!-- end row -->
