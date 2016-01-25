@@ -204,7 +204,7 @@ ul.nav {
 }
 
 #get-involved {
-      font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans",sans-serif;
 }
 
 #back-to-top {
@@ -411,7 +411,7 @@ display: inline-block;
 
 .homepage p {
   font-size: 15px;
-  text-align: left;
+  text-align: cener;
 }
 
 .fa-inverse {
@@ -676,6 +676,10 @@ input {
   #get-involved .col-md-4 {
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  #get-involved p {
+    text-align: center;
   }
 
   #laptop img {
